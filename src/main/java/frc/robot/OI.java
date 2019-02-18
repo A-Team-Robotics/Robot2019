@@ -14,6 +14,7 @@ import frc.robot.commands.MoveSlideBack;
 import frc.robot.commands.MoveSlideForward;
 import frc.robot.commands.MoveSlideFront;
 import frc.robot.commands.MoveSlideReverse;
+import frc.robot.commands.StopSlide;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,6 +39,9 @@ public class OI {
     //  recieveCargo.whenPressed(new RecieveCargo());
      moveSlideForward.whileHeld(new MoveSlideFront());
      moveSlideReverse.whileHeld(new MoveSlideBack());
+     moveSlideForward.whenReleased(new StopSlide());
+     moveSlideForward.whenReleased(new StopSlide());
+
 
    }
 
