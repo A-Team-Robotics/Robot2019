@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveSystem;
 import frc.robot.subsystems.GripperSystem;
 import frc.robot.subsystems.SlideSystem;
 
@@ -25,6 +25,7 @@ import frc.robot.subsystems.SlideSystem;
 public class Robot extends TimedRobot {
   public static GripperSystem gripperSystem = new GripperSystem();
   public static SlideSystem slideSystem = new SlideSystem();
+  public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
 
   Command m_autonomousCommand;
@@ -119,15 +120,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    if(Robot.slideSystem.getReverseLimit()){
-      Robot.slideSystem.stopMotor();
-      Robot.slideSystem.resetPos();
+    if(Robot.slideSystem.getForwardLimit()==true||Robot.slideSystem.getReverseLimit()==true){
+      Robot.slideSystem.disablePID();
     }
-    if(Robot.slideSystem.getForwardLimit()){
-      Robot.slideSystem.stopMotor();
-    }
-    SmartDashboard.putBoolean("Forward", Robot.slideSystem.getForwardLimit());
-    SmartDashboard.putBoolean("Reverse", Robot.slideSystem.getReverseLimit());
   }
 
   /**

@@ -6,6 +6,6 @@ import frc.robot.Robot;
 public class MoveSlideFront extends InstantCommand {
     @Override
     protected void execute() {
-        Robot.slideSystem.moveFront();
+        Robot.slideSystem.setPosition(0);
     }
 }
