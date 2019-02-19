@@ -8,14 +8,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.DeployCargo;
+import frc.robot.commands.DeployBall;
+import frc.robot.commands.DeployBallCollector;
+import frc.robot.commands.ElevatorLevel2Hatch;
+import frc.robot.commands.ElevatorLevel3Hatch;
+import frc.robot.commands.ElevatorLoadCargo;
 import frc.robot.commands.MoveSlideBack;
 import frc.robot.commands.MoveSlideFront;
 import frc.robot.commands.RecieveCargo;
-import frc.robot.commands.StopSlide;
+import frc.robot.commands.RecieveHatch;
+import frc.robot.commands.RetractBallCollector;
 import frc.robot.commands.GripperClose;
 
 /**
@@ -30,22 +34,27 @@ public class OI {
   // number it is.
   public static Joystick xboxController = new Joystick(0);
    Joystick joystickController = new Joystick(1);
-   Button openGripper = new JoystickButton(joystickController, 1);
+   Button scoreBall = new JoystickButton(joystickController, 1);
    Button closeGripper = new JoystickButton(joystickController, 2);
-   Button recieveCargo = new JoystickButton(joystickController, 3);
+   Button recieveBall = new JoystickButton(joystickController, 3);
+   Button recieveHatch = new JoystickButton(xboxController, 1);
    Button moveSlideForward = new JoystickButton(joystickController, 4);
    Button moveSlideReverse = new JoystickButton(joystickController, 5);
+   Button elevatorLevel3Hatch = new JoystickButton(joystickController, 8);
+   Button elevatorLevel2Hatch = new JoystickButton(joystickController, 10);
+   Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
+   Button collectBalls = new JoystickButton(joystickController, 6);
+   Button stopCollectingBalls = new JoystickButton(joystickController, 7);
 
    public OI(){
-      openGripper.whenPressed(new DeployCargo());
-      closeGripper.whenPressed(new GripperClose());
-     recieveCargo.whenPressed(new RecieveCargo());
-     moveSlideForward.whileHeld(new MoveSlideFront());
-     moveSlideReverse.whileHeld(new MoveSlideBack());
-     moveSlideForward.whenReleased(new StopSlide());
-     moveSlideForward.whenReleased(new StopSlide());
-
-
+     
+     moveSlideForward.whenPressed(new MoveSlideFront());
+     moveSlideReverse.whenPressed(new MoveSlideBack());
+     elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
+     elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
+     elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
+     collectBalls.whenPressed(new DeployBallCollector());
+     stopCollectingBalls.whenPressed(new RetractBallCollector());
    }
 
   // There are a few additional built in buttons you can use. Additionally,

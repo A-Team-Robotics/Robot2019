@@ -7,11 +7,16 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.BallCollectorArm2;
+import frc.robot.subsystems.BallCollectorSystem;
 import frc.robot.subsystems.DriveSystem;
+import frc.robot.subsystems.ElevatorSystem;
 import frc.robot.subsystems.GripperSystem;
 import frc.robot.subsystems.SlideSystem;
 
@@ -23,10 +28,15 @@ import frc.robot.subsystems.SlideSystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static BallCollectorArm2 ballCollectorArm2 = new BallCollectorArm2();
+  public static BallCollectorSystem ballCollector = new BallCollectorSystem();
+  public static ElevatorSystem elevatorSystem = new ElevatorSystem();
   public static GripperSystem gripperSystem = new GripperSystem();
   public static SlideSystem slideSystem = new SlideSystem();
   public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
+
+  Solenoid led = new Solenoid(2);
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -37,6 +47,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    elevatorSystem.init();
     m_oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
   }
@@ -112,6 +123,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    led.set(true);
   }
 
   /**
@@ -120,9 +132,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    if(Robot.slideSystem.getForwardLimit()==true||Robot.slideSystem.getReverseLimit()==true){
-      Robot.slideSystem.disablePID();
-    }
+    SmartDashboard.putBoolean("Forward Limit", Robot.slideSystem.getForwardLimit());
+    SmartDashboard.putBoolean("Reverse Limit", Robot.slideSystem.getReverseLimit());
   }
 
   /**

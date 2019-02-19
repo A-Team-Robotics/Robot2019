@@ -49,8 +49,6 @@ public class DriveSystem extends Subsystem {
 
     private static DriveSystem _driveSystemInstance = null;
 
-    private DriveMode _driveMode = DriveMode.MANUAL;
-
     public enum DriveMode{
         MANUAL,
         AUTO
@@ -84,7 +82,7 @@ public class DriveSystem extends Subsystem {
    * @param driveController joystick controller object to get axis value from
    */
     public void arcadeDrive(Joystick driveController){
-        _driveBase.arcadeDrive(-(driveController.getRawAxis(1))/driveSpeed, -(driveController.getRawAxis(4))/driveSpeed, true);
+        _driveBase.arcadeDrive(-(driveController.getRawAxis(1))/driveSpeed, (driveController.getRawAxis(4))/driveSpeed, true);
     }
 
      /**
@@ -197,10 +195,6 @@ public class DriveSystem extends Subsystem {
    */
     public static double map(double x, double in_min, double in_max, double out_min, double out_max){
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-    }
-
-    public void setDriveMode(DriveMode mode){
-        _driveMode = mode;
     }
 
     public int getDistance(){

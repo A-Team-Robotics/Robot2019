@@ -1,32 +1,79 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
-public class BallCollectorSystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class BallCollectorSystem extends Subsystem{
 
-  private DoubleSolenoid _rollerExtendor = new DoubleSolenoid(5, 4);
+    private WPI_TalonSRX _armOneMotor = new WPI_TalonSRX(Constants.BALL_COLLECTOR_MOTOR_ONE);
+    private WPI_TalonSRX _rollerMotorLeft = new WPI_TalonSRX(Constants.ROLLER_MOTOR_LEFT);
+    private WPI_TalonSRX _rollerMotorRight = new WPI_TalonSRX(Constants.ROLLER_MOTOR_RIGHT);
 
-  private WPI_TalonSRX _rollerLeft = new WPI_TalonSRX(11);
-  private WPI_TalonSRX _rollerRight = new WPI_TalonSRX(12);
+    private DoubleSolenoid _armExtendor = new DoubleSolenoid(Constants.BALL_COLLECTOR_SOLENOID[0],Constants.BALL_COLLECTOR_SOLENOID[1]);
 
-  @Override
-  public void initDefaultCommand() {
-     setDefaultCommand(null);
-  }
+    private static BallCollectorSystem _ballCollectorSystemInstance = null;
+
+    public BallCollectorSystem(){
+        super("Intake");
+    }
+
+    public static BallCollectorSystem getInstance(){
+        if(_ballCollectorSystemInstance == null){
+            _ballCollectorSystemInstance = new BallCollectorSystem();
+        }
+        return _ballCollectorSystemInstance;
+    }
+
+    
+    public void init() {
+        _armOneMotor.setSensorPhase(true);
+    }
+
+    
+    public void log() {
+        SmartDashboard.putNumber("Ball Collector Arm One", _armOneMotor.getSelectedSensorPosition());
+    }
+
+    public void setMotorOne(int pos){
+        _armOneMotor.set(ControlMode.Position, pos);
+    }
+
+    public int getArmOnePosition(){
+        return _armOneMotor.getSelectedSensorPosition();
+    }
+
+    public void setRollersForward(){
+        _rollerMotorLeft.set(0.5);
+        _rollerMotorRight.set(0.5);
+    }
+
+    public void stopRollers(){
+        _rollerMotorLeft.stopMotor();
+        _rollerMotorRight.stopMotor();
+    }
+
+    public void setRollersReverse(){
+        _rollerMotorLeft.set(-0.5);
+        _rollerMotorRight.set(-0.5);
+    }
+
+    public void openArms(){
+        _armExtendor.set(Value.kForward);
+    }
+
+    public void closeArms(){
+        _armExtendor.set(Value.kReverse);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+        setDefaultCommand(null);
+    }
+
 }

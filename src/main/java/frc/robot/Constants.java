@@ -56,7 +56,7 @@ public class Constants{
     public static int changeSpeed = 7, deliverPayloadBall = 1, deliverPayloadHatch = 2, autoMode = 3, openStopGriperMotor = 4;
 
     //Driver Selection Enumeration
-    private Driver _currentDriver = null;
+    private static Driver _currentDriver = null;
 
     /**
    * Driver Name enum
@@ -87,6 +87,7 @@ public class Constants{
     public static void selectDriver(Driver driver,Controller controller){
         if(controller == Controller.DRIVE){
             if(driver == Driver.ADAMT){
+                _currentDriver = Driver.ADAMT;
             }
             if(driver == Driver.JUSTIND){
             }
@@ -96,6 +97,10 @@ public class Constants{
             if(driver == Driver.JUSTIND){
             }
         }
+    }
+
+    public static Driver getCurrentDrive() {
+        return _currentDriver;
     }
 }
 /*

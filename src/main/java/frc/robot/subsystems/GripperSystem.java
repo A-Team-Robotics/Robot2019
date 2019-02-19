@@ -35,15 +35,23 @@ public class GripperSystem extends Subsystem {
     gripperMotor.set(0);
   }
 
-  public void deployCargo(){
+  public void deployBall(){
     uperGripper.set(Value.kForward);
     lowerGipper.set(Value.kReverse);
     gripperMotor.set(0.5);
+  }
+  public void deployHatch(){
+    uperGripper.set(Value.kForward);
+    lowerGipper.set(Value.kReverse);
   }
   public void recieveCargo(){
     uperGripper.set(Value.kForward);
     lowerGipper.set(Value.kReverse);
     gripperMotor.set(-0.5);
+  }
+  public void recieveHatch(){
+    uperGripper.set(Value.kForward);
+    lowerGipper.set(Value.kReverse);
   }
   public void closeGripper(){
     uperGripper.set(Value.kReverse);
