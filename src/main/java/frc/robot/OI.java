@@ -47,7 +47,8 @@ public class OI {
    Button stopCollectingBalls = new JoystickButton(joystickController, 7);
 
    public OI(){
-     
+     scoreBall.whenPressed(new DeployBall());
+     closeGripper.whenPressed(new GripperClose());
      moveSlideForward.whenPressed(new MoveSlideFront());
      moveSlideReverse.whenPressed(new MoveSlideBack());
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());

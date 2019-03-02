@@ -9,6 +9,10 @@ public class Arm1Collect extends InstantCommand {
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.setMotorOne(3000);
+        Robot.ballCollector.setMotorOne(29000);
+    }
+    @Override
+    protected void interrupted() {
+
     }
 }

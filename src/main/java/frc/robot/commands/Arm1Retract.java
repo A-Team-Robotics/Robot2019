@@ -9,6 +9,6 @@ public class Arm1Retract extends InstantCommand {
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.setMotorOne(10);
+        Robot.ballCollector.setMotorOne(0);
     }
 }

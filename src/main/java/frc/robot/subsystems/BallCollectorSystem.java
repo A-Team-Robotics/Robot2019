@@ -11,7 +11,7 @@ import frc.robot.Constants;
 
 public class BallCollectorSystem extends Subsystem{
 
-    private WPI_TalonSRX _armOneMotor = new WPI_TalonSRX(Constants.BALL_COLLECTOR_MOTOR_ONE);
+    private WPI_TalonSRX _armOneMotor = new WPI_TalonSRX(6);
     private WPI_TalonSRX _rollerMotorLeft = new WPI_TalonSRX(Constants.ROLLER_MOTOR_LEFT);
     private WPI_TalonSRX _rollerMotorRight = new WPI_TalonSRX(Constants.ROLLER_MOTOR_RIGHT);
 
@@ -32,7 +32,8 @@ public class BallCollectorSystem extends Subsystem{
 
     
     public void init() {
-        _armOneMotor.setSensorPhase(true);
+        _armOneMotor.setInverted(true);
+        //_armOneMotor.setSensorPhase(true);
     }
 
     

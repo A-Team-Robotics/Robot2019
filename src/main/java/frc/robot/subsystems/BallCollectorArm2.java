@@ -12,6 +12,10 @@ public class BallCollectorArm2 extends Subsystem {
 
     private WPI_TalonSRX _armTwoMotor = new WPI_TalonSRX(7);
 
+    public void init(){
+
+        _armTwoMotor.setSensorPhase(false);
+    }
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(null);
@@ -23,7 +27,6 @@ public class BallCollectorArm2 extends Subsystem {
 
     public void setMotorTwo(double pos){
         _armTwoMotor.set(ControlMode.Position, pos);
-        _armTwoMotor.set()
     }
 
     public int getMotorTwoPos(){

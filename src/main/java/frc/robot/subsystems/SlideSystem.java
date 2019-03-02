@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -40,6 +41,10 @@ public class SlideSystem extends Subsystem {
 
   public void moveReverse(){
       slideMotor.set(-0.5);
+  }
+
+  public void setPID(int pos){
+    slideMotor.set(ControlMode.Position, pos);
   }
 
   public void setMotorSpeed(double speed){

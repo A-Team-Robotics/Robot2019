@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
 
+  Compressor comp = new Compressor(0);
   Solenoid led = new Solenoid(2);
 
   Command m_autonomousCommand;
@@ -47,6 +49,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    ballCollector.init();
+    ballCollectorArm2.init();
+    comp.setClosedLoopControl(true);
+    comp.start();
     elevatorSystem.init();
     m_oi = new OI();
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -134,6 +140,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     SmartDashboard.putBoolean("Forward Limit", Robot.slideSystem.getForwardLimit());
     SmartDashboard.putBoolean("Reverse Limit", Robot.slideSystem.getReverseLimit());
+    Robot.ballCollector.log();
+    Robot.ballCollectorArm2.log();
   }
 
   /**
