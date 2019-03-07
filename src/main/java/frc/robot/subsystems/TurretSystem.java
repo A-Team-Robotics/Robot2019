@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.Robot;
+import frc.robot.commands.MoveTurret;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -24,18 +26,19 @@ public class TurretSystem extends Subsystem {
 
   private WPI_TalonSRX _turretMotor = new WPI_TalonSRX(10);
 
-  private DigitalInput _leftTurretSwitch = new DigitalInput(Constants.TURRET_LEFT_LIMIT);
-  private DigitalInput _rightTurretSwitch = new DigitalInput(Constants.TURRET_RIGHT_LIMIT);
+  private DigitalInput _leftTurretSwitch = new DigitalInput(6);
+  private DigitalInput _rightTurretSwitch = new DigitalInput(4);
   
   @Override
   public void initDefaultCommand() {
-     setDefaultCommand(null);
+     setDefaultCommand(new MoveTurret());
   }
 
   public void log() {
-      SmartDashboard.putBoolean("Turret Left Limit", _leftTurretSwitch.get());
-      SmartDashboard.putBoolean("Turret Right Limit", _rightTurretSwitch.get());
+      SmartDashboard.putBoolean("Turret Left Limit j", _leftTurretSwitch.get());
+      SmartDashboard.putBoolean("Turret Right Limit j", _rightTurretSwitch.get());
       SmartDashboard.putNumber("Turret Value", getPosition());
+      SmartDashboard.putNumber("Throttle Value", Robot.m_oi.joystickController.getThrottle());
   }
 
   public void init() {
@@ -91,4 +94,21 @@ public class TurretSystem extends Subsystem {
   public void setTurretPos(int pos){
       _turretMotor.set(ControlMode.Position, pos);
   }
+
+  /**
+   * Map Value Range Function
+   *
+   * <p>Calculates an output based on an input and predefined max and min of the output and the desired range of the output.
+   *
+   * @param x Source Input
+   * @param in_min Source Min
+   * @param in_max Source Max
+   * @param out_min Output Min
+   * @param out_max Source Max
+   * 
+   * @return calculated double value
+   */
+  public static double map(double x, double in_min, double in_max, double out_min, double out_max){
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 }

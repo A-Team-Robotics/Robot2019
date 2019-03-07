@@ -22,7 +22,7 @@ public class XboxDrive extends Command {
 
     @Override
     protected boolean isFinished() {
-        return stop;
+        return true;
     }
     @Override
     protected void interrupted() {

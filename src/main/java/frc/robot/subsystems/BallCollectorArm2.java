@@ -13,7 +13,7 @@ public class BallCollectorArm2 extends Subsystem {
     private WPI_TalonSRX _armTwoMotor = new WPI_TalonSRX(7);
 
     public void init(){
-
+        //_armTwoMotor.setInverted(true);
         _armTwoMotor.setSensorPhase(false);
     }
     @Override

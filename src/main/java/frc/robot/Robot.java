@@ -14,12 +14,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ReadyGripper;
 import frc.robot.subsystems.BallCollectorArm2;
 import frc.robot.subsystems.BallCollectorSystem;
 import frc.robot.subsystems.DriveSystem;
 import frc.robot.subsystems.ElevatorSystem;
 import frc.robot.subsystems.GripperSystem;
 import frc.robot.subsystems.SlideSystem;
+import frc.robot.subsystems.TurretSystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -34,6 +36,7 @@ public class Robot extends TimedRobot {
   public static ElevatorSystem elevatorSystem = new ElevatorSystem();
   public static GripperSystem gripperSystem = new GripperSystem();
   public static SlideSystem slideSystem = new SlideSystem();
+  public static TurretSystem turret = new TurretSystem();
   public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
 
@@ -55,7 +58,7 @@ public class Robot extends TimedRobot {
     comp.start();
     elevatorSystem.init();
     m_oi = new OI();
-    // chooser.addOption("My Auto", new MyAutoCommand());
+    drive.init();
   }
 
   /**
@@ -98,15 +101,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
-
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
-
-    // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
@@ -140,8 +134,11 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     SmartDashboard.putBoolean("Forward Limit", Robot.slideSystem.getForwardLimit());
     SmartDashboard.putBoolean("Reverse Limit", Robot.slideSystem.getReverseLimit());
-    Robot.ballCollector.log();
-    Robot.ballCollectorArm2.log();
+    ballCollector.log();
+    ballCollectorArm2.log();
+    turret.log();
+    SmartDashboard.putData(Robot.drive._driveBase);
+    elevatorSystem.log();
   }
 
   /**

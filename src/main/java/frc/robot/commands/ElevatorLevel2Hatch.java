@@ -10,6 +10,6 @@ public class ElevatorLevel2Hatch extends InstantCommand{
     }
     @Override
     protected void execute() {
-        Robot.elevatorSystem.setElevatorPosition(49990);
+        Robot.elevatorSystem.setElevatorPosition(41948);
     }
 }

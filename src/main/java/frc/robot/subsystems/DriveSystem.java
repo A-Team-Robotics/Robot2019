@@ -23,15 +23,14 @@ public class DriveSystem extends Subsystem {
     public static int driveSpeed = 1;
     public static int CM_CONVERSION = 360;
 
-    private WPI_TalonSRX _backRightCIM = new WPI_TalonSRX(Constants.BACK_RIGHT_MOTOR);//Change to constant later
-    private WPI_TalonSRX _frontRightCIM = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR);//Change to constant later
-    private WPI_TalonSRX _backLeftCIM = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR);//Change to constant later
-    private WPI_TalonSRX _frontLeftCIM = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR);//Change to constant later
+    private WPI_TalonSRX _backRightCIM = new WPI_TalonSRX(1);// Change to constant later
+    private WPI_TalonSRX _frontRightCIM = new WPI_TalonSRX(12);// Change to constant later
+    private WPI_TalonSRX _backLeftCIM = new WPI_TalonSRX(2);//Change to constant later
+    private WPI_TalonSRX _frontLeftCIM = new WPI_TalonSRX(4);//Change to constant later
 
-    private SpeedControllerGroup right = new SpeedControllerGroup(_backRightCIM, _frontRightCIM);
-    private SpeedControllerGroup left = new SpeedControllerGroup(_backLeftCIM, _frontLeftCIM);
-    private DifferentialDrive _driveBase = new DifferentialDrive(left, right);
-
+    private SpeedControllerGroup right = new SpeedControllerGroup(_frontRightCIM,_backRightCIM);
+    private SpeedControllerGroup left = new SpeedControllerGroup(_frontLeftCIM, _backLeftCIM);
+    public DifferentialDrive _driveBase = new DifferentialDrive(right, left);
     
 
     //TODO set access modifiers and clean duplicate objects in origram
@@ -59,12 +58,7 @@ public class DriveSystem extends Subsystem {
     }
 
     public void init() {
-        _backRightCIM.setInverted(false);
-        _backLeftCIM.setInverted(false);
         _driveBase.setSafetyEnabled(false);
-        targetOffSet = visionTable.getEntry("TargetDisplacement");
-        driveInput = visionTable.getEntry("Input to the Drive");
-        SmartDashboard.putNumber("Multi Factor Slider", dashPrintFactor);
     }
 
     public static DriveSystem getInstance(){
@@ -82,7 +76,7 @@ public class DriveSystem extends Subsystem {
    * @param driveController joystick controller object to get axis value from
    */
     public void arcadeDrive(Joystick driveController){
-        _driveBase.arcadeDrive(-(driveController.getRawAxis(1))/driveSpeed, (driveController.getRawAxis(4))/driveSpeed, true);
+        _driveBase.arcadeDrive((driveController.getRawAxis(1))/driveSpeed, (driveController.getRawAxis(4))/driveSpeed, true);
     }
 
      /**
@@ -178,23 +172,6 @@ public class DriveSystem extends Subsystem {
             targetOffSetNumber = targetOffSet.getValue().getDouble();
         }
         m_tracker.enable();
-    }
-
-    /**
-   * Map Value Range Function
-   *
-   * <p>Calculates an output based on an input and predefined max and min of the output and the desired range of the output.
-   *
-   * @param x Source Input
-   * @param in_min Source Min
-   * @param in_max Source Max
-   * @param out_min Output Min
-   * @param out_max Source Max
-   * 
-   * @return calculated double value
-   */
-    public static double map(double x, double in_min, double in_max, double out_min, double out_max){
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
     }
 
     public int getDistance(){

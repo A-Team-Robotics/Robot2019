@@ -17,10 +17,13 @@ import frc.robot.commands.ElevatorLevel3Hatch;
 import frc.robot.commands.ElevatorLoadCargo;
 import frc.robot.commands.MoveSlideBack;
 import frc.robot.commands.MoveSlideFront;
+import frc.robot.commands.ReadyGripper;
 import frc.robot.commands.RecieveCargo;
 import frc.robot.commands.RecieveHatch;
 import frc.robot.commands.RetractBallCollector;
-import frc.robot.commands.GripperClose;
+import frc.robot.commands.TurretLeft;
+import frc.robot.commands.TurretRight;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,23 +35,31 @@ public class OI {
   //// joystick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
-  public static Joystick xboxController = new Joystick(0);
-   Joystick joystickController = new Joystick(1);
-   Button scoreBall = new JoystickButton(joystickController, 1);
-   Button closeGripper = new JoystickButton(joystickController, 2);
+   public static Joystick xboxController = new Joystick(0);
+   public static Joystick joystickController = new Joystick(1);
+
+   //Joystick Buttons
+   Button releaseBall = new JoystickButton(joystickController, 1);
+   Button readyGripper = new JoystickButton(joystickController, 2);
    Button recieveBall = new JoystickButton(joystickController, 3);
-   Button recieveHatch = new JoystickButton(xboxController, 1);
-   Button moveSlideForward = new JoystickButton(joystickController, 4);
-   Button moveSlideReverse = new JoystickButton(joystickController, 5);
+   Button recieveHatch = new JoystickButton(joystickController, 4);
+   Button moveSlideForward = new JoystickButton(joystickController, 5);
+   Button moveSlideReverse = new JoystickButton(joystickController, 6);
    Button elevatorLevel3Hatch = new JoystickButton(joystickController, 8);
    Button elevatorLevel2Hatch = new JoystickButton(joystickController, 10);
    Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
-   Button collectBalls = new JoystickButton(joystickController, 6);
+   Button collectBalls = new JoystickButton(joystickController, 11);
    Button stopCollectingBalls = new JoystickButton(joystickController, 7);
 
+   //Xbox Buttons
+   Button turretLeft = new JoystickButton(xboxController, 3);
+   Button turretRight = new JoystickButton(xboxController, 2);
+
    public OI(){
-     scoreBall.whenPressed(new DeployBall());
-     closeGripper.whenPressed(new GripperClose());
+     releaseBall.whenPressed(new DeployBall());
+     readyGripper.whenPressed(new ReadyGripper());
+     recieveBall.whenPressed(new RecieveCargo());
+     recieveHatch.whenPressed(new RecieveHatch());
      moveSlideForward.whenPressed(new MoveSlideFront());
      moveSlideReverse.whenPressed(new MoveSlideBack());
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
@@ -78,3 +89,26 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 }
+/*
+ * XBOX BUTTON MAPPING FOR DRIVER STATION AS FOLLOWS
+ * Button 1 = A
+ * Button 2 = B
+ * Button 3 = X OR small left wheel button up
+ * Button 4 = Y
+ * Button 5 = Left Bumper
+ * Button 6 = Right Bumper OR small right wheel down
+ * Button 7 = Select / Menu Button
+ * Button 8 = Start / Enter Button
+ * Button 9 = Click in Left Analog Stick OR small left wheel down
+ * Button 10 = Click in Right Analog Stick
+ * 
+ * Axis 0 = Left stick left + right
+ * Axis 1 = Left stick up + down
+ * Axis 2 = Left trigger
+ * Axis 3 = Right trigger
+ * Axis 4 = Right stick left + right
+ * Axis 5 = Right stick up + down
+ * 
+ * POV = D-Pad
+ * POV LEFT = small right wheel up
+ */

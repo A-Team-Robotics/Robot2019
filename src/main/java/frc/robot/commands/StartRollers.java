@@ -19,9 +19,15 @@ public class StartRollers extends Command{
     protected boolean isFinished() {
         if(Robot.ballCollectorArm2.getMotorTwoPos()>400){
             return false;
+        }else if(Robot.ballCollector.getBallStopButton()==true){
+            return true;
         }else{
             return true;
         }
+    }
+    @Override
+    protected void end() {
+        Robot.ballCollector.stopRollers();
     }
     @Override
     protected void interrupted() {

@@ -7,8 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +23,12 @@ public class GripperSystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  private DoubleSolenoid uperGripper = new DoubleSolenoid(0, 1);
-  private DoubleSolenoid lowerGipper = new DoubleSolenoid(7, 6);
+  public static DoubleSolenoid lowerGripper = new DoubleSolenoid(1, 0);
+  private DoubleSolenoid upperGripper = new DoubleSolenoid(6, 7);
 
-  private WPI_TalonSRX gripperMotor = new WPI_TalonSRX(9);
+  private DigitalInput buttonBallStop = new DigitalInput(3);
+
+  private VictorSPX gripperMotor = new VictorSPX(9);
   
 
   @Override
@@ -31,31 +36,35 @@ public class GripperSystem extends Subsystem {
      setDefaultCommand(null);
   }
 
+  public boolean getButton(){
+    return buttonBallStop.get();
+  }
+
   public void stopMotor(){
-    gripperMotor.set(0);
+    gripperMotor.set(ControlMode.PercentOutput, 0);
   }
 
   public void deployBall(){
-    uperGripper.set(Value.kForward);
-    lowerGipper.set(Value.kReverse);
-    gripperMotor.set(0.5);
+    upperGripper.set(Value.kForward);//Open Upper Gripper
+    lowerGripper.set(Value.kReverse);//Open Lower Gripper
+    gripperMotor.set(ControlMode.PercentOutput,0.5);
   }
   public void deployHatch(){
-    uperGripper.set(Value.kForward);
-    lowerGipper.set(Value.kReverse);
+    lowerGripper.set(Value.kForward);
   }
   public void recieveCargo(){
-    uperGripper.set(Value.kForward);
-    lowerGipper.set(Value.kReverse);
-    gripperMotor.set(-0.5);
+    upperGripper.set(Value.kForward);
+    lowerGripper.set(Value.kReverse);
+    gripperMotor.set(ControlMode.PercentOutput,-0.5);
   }
   public void recieveHatch(){
-    uperGripper.set(Value.kForward);
-    lowerGipper.set(Value.kReverse);
+    //upperGripper.set(Value.kForward);
+    lowerGripper.set(Value.kReverse);
+    gripperMotor.set(ControlMode.PercentOutput,0);
   }
-  public void closeGripper(){
-    uperGripper.set(Value.kReverse);
-    lowerGipper.set(Value.kForward);
-    gripperMotor.set(0);
+  public void loadBall(){
+    lowerGripper.set(Value.kForward);//Close Lower Gripper
+    upperGripper.set(Value.kReverse);//Close Upper Gripper
+    gripperMotor.set(ControlMode.PercentOutput,0);
   }
 }

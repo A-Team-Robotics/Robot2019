@@ -36,11 +36,11 @@ public class SlideSystem extends Subsystem {
   }
 
   public void moveFront(){
-    slideMotor.set(0.5);
+    slideMotor.set(1);
   }
 
   public void moveReverse(){
-      slideMotor.set(-0.5);
+      slideMotor.set(-1);
   }
 
   public void setPID(int pos){

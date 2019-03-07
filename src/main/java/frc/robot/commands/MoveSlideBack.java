@@ -7,7 +7,7 @@ import frc.robot.Robot;
 public class MoveSlideBack extends Command{
     @Override
     protected void execute() {
-        Robot.slideSystem.setMotorSpeed(-0.3);
+        Robot.slideSystem.setMotorSpeed(-1);
     }
 
     @Override

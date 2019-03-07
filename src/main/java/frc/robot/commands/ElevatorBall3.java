@@ -3,13 +3,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class ElevatorLoadCargo extends InstantCommand{
+public class ElevatorBall3 extends InstantCommand{
 
-    public ElevatorLoadCargo(){
+    public ElevatorBall3(){
         requires(Robot.elevatorSystem);
     }
     @Override
     protected void execute() {
-        Robot.elevatorSystem.setElevatorPosition(5);
+        Robot.elevatorSystem.setElevatorPosition(96000);
     }
 }

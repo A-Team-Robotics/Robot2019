@@ -5,11 +5,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
 
 public class ElevatorSystem extends Subsystem{
 
-    private final WPI_TalonSRX _elevatorDriveMotor = new WPI_TalonSRX(Constants.ELAVATOR_DRIVE_MOTOR);
+    private final WPI_TalonSRX _elevatorDriveMotor = new WPI_TalonSRX(5);
 
     private static ElevatorSystem _elavatorInstance = null;
 
@@ -34,6 +33,7 @@ public class ElevatorSystem extends Subsystem{
     
     public void log() {
         SmartDashboard.putNumber("Elevator Encoder Position", getElevaotrPosition());
+        SmartDashboard.putNumber("Talon 5 Temp", _elevatorDriveMotor.getTemperature());
     }
 
     public void configTest(){
