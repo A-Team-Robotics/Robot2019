@@ -13,6 +13,6 @@ public class Arm1Collect extends InstantCommand {
     }
     @Override
     protected void interrupted() {
-
+        
     }
 }
