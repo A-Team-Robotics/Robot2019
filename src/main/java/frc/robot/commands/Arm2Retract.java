@@ -10,7 +10,6 @@ public class Arm2Retract extends InstantCommand {
     }
     @Override
     protected void execute() {
-        Robot.ballCollectorArm2.unInvertMotor();
-        Robot.ballCollectorArm2.setMotorTwo(-640);
+        Robot.ballCollectorArm2.setMotorTwo(640);
     }
 }
