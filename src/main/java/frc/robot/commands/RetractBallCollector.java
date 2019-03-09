@@ -6,8 +6,7 @@ import frc.robot.RobotMap;
 
 public class RetractBallCollector extends CommandGroup{
     public RetractBallCollector(){
-        addParallel(new WaitElevatorRetract(RobotMap.elevatorDeployBallPos));
-        addSequential(new WaitElevatorLevel2(RobotMap.elevatorDeployBallPos));
+        addSequential(new WaitElevatorLevel2(30000));
         Timer.delay(1);
         addSequential(new StopRollers());
         addParallel(new Arm1Retract(5));
