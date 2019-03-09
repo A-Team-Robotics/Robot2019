@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.Climb;
 import frc.robot.commands.CloseArmSpin;
 import frc.robot.commands.DeployBall;
 import frc.robot.commands.DeployBallCollector;
@@ -54,6 +55,7 @@ public class OI {
    //Xbox Buttons
    Button turretLeft = new JoystickButton(xboxController, 3);
    Button turretRight = new JoystickButton(xboxController, 2);
+   Button climb2 = new JoystickButton(xboxController, 5);
 
    public OI(){
      releaseBall.whenPressed(new DeployBall());
@@ -68,6 +70,7 @@ public class OI {
      collectBalls.whenPressed(new DeployBallCollector());
      stopCollectingBalls.whenPressed(new RetractBallCollector());
      closeArm.whenPressed(new CloseArmSpin());
+     climb2.whenPressed(new Climb());
    }
 
   // There are a few additional built in buttons you can use. Additionally,
