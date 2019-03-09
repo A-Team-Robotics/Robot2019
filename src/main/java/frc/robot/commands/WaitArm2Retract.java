@@ -21,7 +21,7 @@ public class WaitArm2Retract extends Command {
 
     @Override
     protected boolean isFinished() {
-        if(Robot.ballCollectorArm2.getMotorTwoPos()>400){
+        if(Robot.ballCollectorArm2.getMotorTwoPos()>440){
             return true;
         }else{
             return false;

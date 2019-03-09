@@ -6,6 +6,7 @@ public class LoadBallCollector extends CommandGroup{
     public LoadBallCollector(){
        addParallel(new StopRollers());
        addParallel(new ElevatorLoadCargo());
-       addSequential(new Arm1Retract(19000));
+       addSequential(new Arm1Retract(18000));
+       addParallel(new Arm2Collect(150)); 
     }
 }
