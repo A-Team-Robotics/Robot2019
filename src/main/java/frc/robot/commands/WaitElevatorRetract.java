@@ -3,10 +3,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class WaitElevatorLevel2 extends Command{
+public class WaitElevatorRetract extends Command{
 
     int pos = 0;
-    public WaitElevatorLevel2(int pos){
+    public WaitElevatorRetract(int pos){
         this.pos=pos;
         requires(Robot.elevatorSystem);
     }
@@ -21,7 +21,7 @@ public class WaitElevatorLevel2 extends Command{
 
     @Override
     protected boolean isFinished() {
-        if(Robot.elevatorSystem.getElevaotrPosition()>(pos-10)||Robot.elevatorSystem.getElevaotrPosition()==pos){
+        if(Robot.elevatorSystem.getElevaotrPosition()>(pos-1000)){
             return true;
         }else{
             return false;

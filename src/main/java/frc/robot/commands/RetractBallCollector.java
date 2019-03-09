@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class RetractBallCollector extends CommandGroup{
     public RetractBallCollector(){
-        addParallel(new ElevatorLevel2Hatch());
-       addSequential(new WaitElevatorLevel2());
-        Timer.delay(0.4);
+        addParallel(new WaitElevatorRetract(30000));
+        //addSequential(new WaitElevatorLevel2(30000));
+        Timer.delay(1);
         addSequential(new StopRollers());
         addParallel(new Arm1Retract(5));
-        addParallel(new Arm2Retract(412));
+        addSequential(new WaitArm2Retract(412));
         Timer.delay(0.4);
         addSequential(new ElevatorLoadCargo());
     }

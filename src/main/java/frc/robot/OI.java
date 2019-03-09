@@ -62,9 +62,9 @@ public class OI {
      recieveHatch.whenPressed(new RecieveHatch());
      moveSlideForward.whenPressed(new MoveSlideFront());
      moveSlideReverse.whenPressed(new MoveSlideBack());
-    //  elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
-    //  elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
-    //  elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
+     elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
+     elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
+     elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
      collectBalls.whenPressed(new DeployBallCollector());
      stopCollectingBalls.whenPressed(new RetractBallCollector());
      closeArm.whenPressed(new CloseArmSpin());

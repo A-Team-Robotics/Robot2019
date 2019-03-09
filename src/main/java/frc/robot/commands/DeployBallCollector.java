@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DeployBallCollector extends CommandGroup{
     public DeployBallCollector(){
-      addSequential(new WaitElevatorLevel2());
+       addSequential(new WaitElevatorLevel2(30000));
        Timer.delay(1);
        addParallel(new Arm2Collect(100));
        Timer.delay(4);
