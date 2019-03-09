@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ReadyGripper;
+import frc.robot.subsystems.ArmPneumatics;
 import frc.robot.subsystems.BallCollectorArm2;
 import frc.robot.subsystems.BallCollectorSystem;
 import frc.robot.subsystems.DriveSystem;
@@ -31,6 +32,7 @@ import frc.robot.subsystems.TurretSystem;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static ArmPneumatics arm = new ArmPneumatics();
   public static BallCollectorArm2 ballCollectorArm2 = new BallCollectorArm2();
   public static BallCollectorSystem ballCollector = new BallCollectorSystem();
   public static ElevatorSystem elevatorSystem = new ElevatorSystem();

@@ -5,14 +5,15 @@ import frc.robot.Robot;
 
 public class StopRollers extends InstantCommand{
     public StopRollers(){
-        requires(Robot.ballCollector);
+        requires(Robot.arm);
     }
     @Override
     protected void initialize() {
-        Robot.ballCollector.stopRollers();
+        Robot.arm.stopRollers();
+        Robot.arm.closeArms();
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.stopRollers();
+        Robot.arm.stopRollers();
     }
 }

@@ -5,10 +5,10 @@ import frc.robot.Robot;
 
 public class RetractArmCollectors extends InstantCommand {
     public RetractArmCollectors(){
-        requires(Robot.ballCollector);
+        requires(Robot.arm);
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.closeArms();
+        Robot.arm.closeArms();
     }
 }

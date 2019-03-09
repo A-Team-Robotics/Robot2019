@@ -6,12 +6,11 @@ import frc.robot.Robot;
 
 public class DeployBallCollector extends CommandGroup{
     public DeployBallCollector(){
-      // addSequential(new ElevatorLevel2Hatch());
+      // addSequential(new WaitElevatorLevel2());
        Timer.delay(1);
        addParallel(new Arm1Collect());
-        addParallel(new Arm2Collect());
-Timer.delay(2);
-       addSequential(new ExtendArmCollectors());
+       addParallel(new Arm2Collect());
+       Timer.delay(2);
        addSequential(new StartRollers());
     }
 }

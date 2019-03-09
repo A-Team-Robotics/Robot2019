@@ -14,12 +14,6 @@ import frc.robot.Constants;
 public class BallCollectorSystem extends Subsystem{
 
     private WPI_TalonSRX _armOneMotor = new WPI_TalonSRX(6);
-    private WPI_TalonSRX _rollerMotorLeft = new WPI_TalonSRX(Constants.ROLLER_MOTOR_LEFT);
-    private VictorSPX _rollerMotorRight = new VictorSPX(Constants.ROLLER_MOTOR_RIGHT);
-
-    private DoubleSolenoid _armExtendor = new DoubleSolenoid(Constants.BALL_COLLECTOR_SOLENOID[0],Constants.BALL_COLLECTOR_SOLENOID[1]);
-
-    private DigitalInput buttonStop = new DigitalInput(5);
 
     private static BallCollectorSystem _ballCollectorSystemInstance = null;
 
@@ -39,14 +33,8 @@ public class BallCollectorSystem extends Subsystem{
         _armOneMotor.setInverted(true);
     }
 
-    public boolean getBallStopButton(){
-        return buttonStop.get();
-    }
-
-    
     public void log() {
         SmartDashboard.putNumber("Ball Collector Arm One", _armOneMotor.getSelectedSensorPosition());
-        SmartDashboard.putBoolean("Button Stop Arm", getBallStopButton());
     }
 
     public void setMotorOne(int pos){
@@ -56,30 +44,7 @@ public class BallCollectorSystem extends Subsystem{
     public int getArmOnePosition(){
         return _armOneMotor.getSelectedSensorPosition();
     }
-
-    public void setRollersForward(){
-        _rollerMotorLeft.set(0.5);
-        _rollerMotorRight.set(ControlMode.PercentOutput, 0.5);
-    }
-
-    public void stopRollers(){
-        _rollerMotorLeft.stopMotor();
-        _rollerMotorRight.set(ControlMode.PercentOutput, 0);
-    }
-
-    public void setRollersReverse(){
-        _rollerMotorLeft.set(-0.5);
-        _rollerMotorRight.set(ControlMode.PercentOutput, -0.5);;
-    }
-
-    public void openArms(){
-        _armExtendor.set(Value.kForward);
-    }
-
-    public void closeArms(){
-        _armExtendor.set(Value.kReverse);
-    }
-
+    
     @Override
     protected void initDefaultCommand() {
         setDefaultCommand(null);

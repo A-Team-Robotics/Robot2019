@@ -5,32 +5,31 @@ import frc.robot.Robot;
 
 public class StartRollers extends Command{
     public StartRollers(){
-        requires(Robot.ballCollector);
+        requires(Robot.arm);
     }
     @Override
     protected void initialize() {
-        Robot.ballCollector.setRollersForward();
+        Robot.arm.setRollersForward();
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.setRollersForward();
+        Robot.arm.openArms();
+        Robot.arm.setRollersForward();
     }
     @Override
     protected boolean isFinished() {
-        if(Robot.ballCollectorArm2.getMotorTwoPos()>400){
-            return false;
-        }else if(Robot.ballCollector.getBallStopButton()==true){
+        if(Robot.arm.getBallStopButton()==true){
             return true;
         }else{
-            return true;
+            return false;
         }
     }
     @Override
     protected void end() {
-        Robot.ballCollector.stopRollers();
+        Robot.arm.stopRollers();
     }
     @Override
     protected void interrupted() {
-        Robot.ballCollector.stopRollers();
+        Robot.arm.stopRollers();
     }
 }
