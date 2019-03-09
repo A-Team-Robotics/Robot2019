@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.CloseArmSpin;
 import frc.robot.commands.DeployBall;
 import frc.robot.commands.DeployBallCollector;
 import frc.robot.commands.ElevatorLevel2Hatch;
@@ -48,6 +49,7 @@ public class OI {
    Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
    Button collectBalls = new JoystickButton(joystickController, 11);
    Button stopCollectingBalls = new JoystickButton(joystickController, 7);
+   Button closeArm = new JoystickButton(joystickController, 9);
 
    //Xbox Buttons
    Button turretLeft = new JoystickButton(xboxController, 3);
@@ -60,11 +62,12 @@ public class OI {
      recieveHatch.whenPressed(new RecieveHatch());
      moveSlideForward.whenPressed(new MoveSlideFront());
      moveSlideReverse.whenPressed(new MoveSlideBack());
-     elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
-     elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
-     elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
+    //  elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
+    //  elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
+    //  elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
      collectBalls.whenPressed(new DeployBallCollector());
      stopCollectingBalls.whenPressed(new RetractBallCollector());
+     closeArm.whenPressed(new CloseArmSpin());
    }
 
   // There are a few additional built in buttons you can use. Additionally,

@@ -9,7 +9,7 @@ public class Arm2Collect extends InstantCommand {
     }
     @Override
     protected void execute() {
-        Robot.ballCollectorArm2.setMotorTwo(8);
+        Robot.ballCollectorArm2.setMotorTwo(184);
     }
     @Override
     protected void interrupted() {

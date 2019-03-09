@@ -14,7 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.LoadBallCollector;
 import frc.robot.commands.ReadyGripper;
+import frc.robot.commands.StopRollers;
 import frc.robot.subsystems.ArmPneumatics;
 import frc.robot.subsystems.BallCollectorArm2;
 import frc.robot.subsystems.BallCollectorSystem;
@@ -143,6 +145,9 @@ public class Robot extends TimedRobot {
     elevatorSystem.log();
     if(Robot.gripperSystem.getButton()==false){
       Scheduler.getInstance().add(new ReadyGripper());
+    }
+    if(Robot.arm.getBallStopButton()==false){
+      Scheduler.getInstance().add(new LoadBallCollector());
     }
   }
 
