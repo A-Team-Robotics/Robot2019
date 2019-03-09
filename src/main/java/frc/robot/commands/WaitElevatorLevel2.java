@@ -21,7 +21,7 @@ public class WaitElevatorLevel2 extends Command{
 
     @Override
     protected boolean isFinished() {
-        if(Robot.elevatorSystem.getElevaotrPosition()>(pos-10)||Robot.elevatorSystem.getElevaotrPosition()==pos){
+        if(Robot.elevatorSystem.getElevaotrPosition()>(pos-40)||Robot.elevatorSystem.getElevaotrPosition()==pos){
             return true;
         }else{
             return false;

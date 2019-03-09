@@ -20,7 +20,7 @@ public class Arm2Collect extends Command {
     }
 	@Override
 	protected boolean isFinished() {
-        if(Robot.ballCollectorArm2.getMotorTwoPos()<(pos+4)||Robot.ballCollectorArm2.getMotorTwoPos()<pos||Robot.ballCollectorArm2.getMotorTwoPos()==pos){
+        if(Robot.ballCollectorArm2.getMotorTwoPos()<(pos+2)||Robot.ballCollectorArm2.getMotorTwoPos()<pos||Robot.ballCollectorArm2.getMotorTwoPos()==pos){
             return true;
         }else{
             return false;
