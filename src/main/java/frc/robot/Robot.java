@@ -141,6 +141,9 @@ public class Robot extends TimedRobot {
     turret.log();
     SmartDashboard.putData(Robot.drive._driveBase);
     elevatorSystem.log();
+    if(Robot.gripperSystem.getButton()==false){
+      Scheduler.getInstance().add(new ReadyGripper());
+    }
   }
 
   /**
