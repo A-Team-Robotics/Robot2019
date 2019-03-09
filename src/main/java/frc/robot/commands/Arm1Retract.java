@@ -4,11 +4,13 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 public class Arm1Retract extends InstantCommand {
-    public Arm1Retract() {
+    int pos = 0;
+    public Arm1Retract(int pos) {
+        this.pos = pos;
         requires(Robot.ballCollector);
     }
     @Override
     protected void execute() {
-        Robot.ballCollector.setMotorOne(5);
+        Robot.ballCollector.setMotorOne(pos);
     }
 }
