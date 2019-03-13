@@ -27,8 +27,8 @@ public class WaitTurretToPos extends Command{
 
     @Override
     protected void execute() { 
-    //this sub is continously call by the robot program 
-    Robot.turret.setTurretPos(pos);      
+    //this sub is continously call by the robot program
+            Robot.turret.setTurretPos(pos);        
     }
 
     @Override
@@ -40,13 +40,9 @@ public class WaitTurretToPos extends Command{
         }
     }
 
-    @Override
-	protected void end() {
-    	Robot.turret.stopMotor();
-    }
 
     @Override
     protected void interrupted() {
-        end();
+        Robot.turret.stopMotor();
     }
 }

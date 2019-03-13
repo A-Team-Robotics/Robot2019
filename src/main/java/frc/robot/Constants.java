@@ -49,7 +49,7 @@ public class Constants{
     public static final int arm1RetractPos1 = 13000;
     public static final int arm1LoadPos = 15000;
     public static final int arm1RetractPosFinal = 0;
-    public static final int arm2RetractPosFinal = 595;
+    public static final int arm2RetractPosFinal = 458;
     public static final int arm2CollectPos1 = arm2RetractPosFinal-40;
     public static final int arm2CollectPosfinal = arm2RetractPosFinal-220;
     public static final int arm2RetractPos1 = arm2CollectPosfinal + 10;
@@ -58,14 +58,14 @@ public class Constants{
 
     //TurretConstants
     
-    public static final int turretTurnMinPos = -3820;
-    public static final int  turretTurnMaxPos = 3138;
+    public static  int turretTurnMinPos = 0;
+    public static  int  turretTurnMaxPos = 7610;
     public static final double turretSpeed = 0.3; 
     public static final int turretTurnLeftPos = 485;
     public static final int turretTurnRightPos = 8067;
 
     public static final double slideMotorspeed = 1;
-    public static final double gripperMotorDeployBallSpeed = 0.5;
+    public static final double gripperMotorDeployBallSpeed = 1;
     public static final double gripperMotorReciveBallSpeed = 0.5;
 
     public static final int elevatorTopValue = 200000;

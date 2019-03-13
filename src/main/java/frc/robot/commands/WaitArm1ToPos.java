@@ -38,11 +38,11 @@ public class WaitArm1ToPos extends Command {
 
     @Override
 	protected void end() {
-    	Robot.ballCollectorArm1.stopMotor();
+    	
     }
 
     @Override
     protected void interrupted() {
-        end();
+        Robot.ballCollectorArm1.stopMotor();
     }
 }

@@ -18,8 +18,8 @@ import frc.robot.commands.DeployBallCollector;
 import frc.robot.commands.ElevatorLevel1Hatch;
 import frc.robot.commands.ElevatorLevel2Hatch;
 import frc.robot.commands.ElevatorLevel3Hatch;
-import frc.robot.commands.MoveSlideBack;
-import frc.robot.commands.MoveSlideFront;
+import frc.robot.commands.SlideBack;
+import frc.robot.commands.SlideFront;
 import frc.robot.commands.ReadyGripper;
 import frc.robot.commands.RecieveCargo;
 import frc.robot.commands.RecieveHatch;
@@ -44,8 +44,8 @@ public class OI {
    Button readyGripper = new JoystickButton(joystickController, 2);
    Button recieveBall = new JoystickButton(joystickController, 3);
    Button recieveHatch = new JoystickButton(joystickController, 4);
-   Button moveSlideForward = new JoystickButton(joystickController, 5);
-   Button moveSlideReverse = new JoystickButton(joystickController, 6);
+   Button moveSlideForward = new JoystickButton(joystickController, 6);
+   Button moveSlideReverse = new JoystickButton(joystickController, 5);
    Button elevatorLevel3Hatch = new JoystickButton(joystickController, 8);
    Button elevatorLevel2Hatch = new JoystickButton(joystickController, 10);
    Button elevatorLevel1Hatch = new JoystickButton(joystickController, 12);
@@ -60,12 +60,12 @@ public class OI {
    Button climb2 = new JoystickButton(xboxController, 5);
 
    public OI(){
-     releaseBall.whenPressed(new DeployBall());
+     releaseBall.whenPressed(new shootBall());
      readyGripper.whenPressed(new ReadyGripper());
      recieveBall.whenPressed(new RecieveCargo());
      recieveHatch.whenPressed(new RecieveHatch());
-     moveSlideForward.whenPressed(new MoveSlideFront());
-     moveSlideReverse.whenPressed(new MoveSlideBack());
+     moveSlideForward.whenPressed(new SlideFront());
+     moveSlideReverse.whenPressed(new SlideBack());
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
      elevatorLevel1Hatch.whenPressed(new ElevatorLevel1Hatch());
      elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());

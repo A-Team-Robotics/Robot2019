@@ -9,11 +9,11 @@ public class LoadBallCollector extends CommandGroup{
        addParallel(new StopArmRollers());
        addParallel(new RecieveCargo());
        addParallel(new WaitElevatorToPos(Constants.elevatorLoadcargo));
-       addParallel(new MoveSlideFront());
+       addParallel(new SlideFront());
        addSequential(new WaitTurretToPos((Constants.turretTurnMaxPos + Constants.turretTurnMinPos)/2));
        addSequential(new WaitArm1AndArm2ToPos(Constants.arm1LoadPos,Constants.arm2LoadPos)); 
        //addSequential(new WaitTimer(0.2));      
-       addSequential(new RunRollers());
+       addParallel(new RunRollers());
        //addSequential(new WaitTimer(4.0));
        //addSequential(new RetractBallCollector());
     }

@@ -26,11 +26,11 @@ public class TurnOffElevatorMotor extends Command{
 
     @Override
 	protected void end() {
-    	Robot.elevatorSystem.stopMotor();
+    	
     }
 
     @Override
     protected void interrupted() {
-        end();
+        Robot.elevatorSystem.stopMotor();
     }
 }

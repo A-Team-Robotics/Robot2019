@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+//import com.sun.org.apache.bcel.internal.Const;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.LoadBallCollector;
+import frc.robot.commands.MoveTurret;
 import frc.robot.commands.ReadyGripper;
 import frc.robot.commands.StopArmRollers;
 import frc.robot.commands.StopTurretArm;
@@ -26,6 +29,7 @@ import frc.robot.subsystems.ElevatorSystem;
 import frc.robot.subsystems.GripperSystem;
 import frc.robot.subsystems.SlideSystem;
 import frc.robot.subsystems.TurretSystem;
+import frc.robot.Constants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -64,6 +68,7 @@ public class Robot extends TimedRobot {
     elevatorSystem.init();
     m_oi = new OI();
     drive.init();
+    turret.init();
   }
 
   /**
@@ -155,11 +160,31 @@ public class Robot extends TimedRobot {
     if(Robot.gripperSystem.getButton()==false){
       Scheduler.getInstance().add(new ReadyGripper());
     }
+
+    if(Robot.turret.getLeftLimitSwitch()==false){
+     int currentPos = Robot.turret.getPosition();
+     Constants.turretTurnMinPos = currentPos;
+     Constants.turretTurnMaxPos = currentPos+7610;
+     Robot.turret.setTurretPos(500);
+     Scheduler.getInstance().add(new MoveTurret());
+    }
+    if(Robot.turret.getRightLimitSwitch()==false){
+      int currentPos = Robot.turret.getPosition();
+      Constants.turretTurnMinPos = currentPos-7610;
+      Constants.turretTurnMaxPos = currentPos;
+      Robot.turret.setTurretPos(500);
+      Scheduler.getInstance().add(new MoveTurret());
+     }
     
     if(Robot.arm.getBallStopButton()==false){
-      Scheduler.getInstance().add(new LoadBallCollector());
+      double pos = (Constants.turretMax + Constants.turretMin)/2;
+        if(Robot.turret.getPosition()>(pos-30) && Robot.turret.getPosition()<(pos+30)){
+            // Turret should be in place.
+        }else{
+          Scheduler.getInstance().add(new LoadBallCollector());
+        }
+      }
     }
-  }
 
   /**
    * This function is called periodically during test mode.

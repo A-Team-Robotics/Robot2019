@@ -15,11 +15,11 @@ public class StartArmRollers extends InstantCommand{
 
     @Override
 	protected void end() {
-    	Robot.arm.stopMotor();
+    	
     }
 
     @Override
     protected void interrupted() {
-        end();
+        Robot.arm.stopMotor();
     }
 }

@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
 public class RecieveHatch extends InstantCommand {
@@ -10,5 +11,6 @@ public class RecieveHatch extends InstantCommand {
     @Override
     protected void execute() {
         Robot.gripperSystem.recieveHatch();
+        Scheduler.getInstance().add(new SlideBack());
     }
 }
