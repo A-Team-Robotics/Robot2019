@@ -1,5 +1,6 @@
 package frc.robot;
 
+
 /*
 Constant class to hold all static variables used in the robot program.
 */
@@ -39,8 +40,51 @@ public class Constants{
     public static final int LED_RING_ONE = 2;
 
     //Encoder and Potentiometer Values
-    public static final int elevatorTopValue = 200000, elevatorBottomValue = 20, elevatorMiddleValue = 50106, reverseMaxBallCollectorArm2 = 549, forwardMaxBallCollectorArm2 = 144, arm1Max = -30223, arm1Min = -16,
-    slideMax = 1000, slideMin = 100, turretMax = 20000, turretMin = 100;
+
+    //Extend, Retract Arm  and Load Cargo constants.
+    public static final double ArmMotorSpeed = 0.475;
+    public static final int elevatorLiftToClearGrippersPos = 18000;
+    public static final int elevatorLoadcargo = 0;
+    public static final int arm1collectPosFinal = 18100;
+    public static final int arm1RetractPos1 = 13000;
+    public static final int arm1LoadPos = 15000;
+    public static final int arm1RetractPosFinal = 0;
+    public static final int arm2RetractPosFinal = 595;
+    public static final int arm2CollectPos1 = arm2RetractPosFinal-40;
+    public static final int arm2CollectPosfinal = arm2RetractPosFinal-220;
+    public static final int arm2RetractPos1 = arm2CollectPosfinal + 10;
+    public static final int arm2LoadPos = arm2RetractPosFinal - 280;
+    //public static final int arm2LoadPos = arm2RetractPosFinal - 260;
+
+    //TurretConstants
+    
+    public static final int turretTurnMinPos = -3820;
+    public static final int  turretTurnMaxPos = 3138;
+    public static final double turretSpeed = 0.3; 
+    public static final int turretTurnLeftPos = 485;
+    public static final int turretTurnRightPos = 8067;
+
+    public static final double slideMotorspeed = 1;
+    public static final double gripperMotorDeployBallSpeed = 0.5;
+    public static final double gripperMotorReciveBallSpeed = 0.5;
+
+    public static final int elevatorTopValue = 200000;
+    public static final int elevatorBottomValue = 0;
+    
+    public static final int elevatorLevelOne = 0;
+    public static final int elevatorLevelThree = 117182;
+    public static final int elevatorLeveltwo = (elevatorLevelOne+elevatorLevelThree)/2;
+    
+    public static final int reverseMaxBallCollectorArm2 = 549;
+    public static final int forwardMaxBallCollectorArm2 = 144;
+    public static final int arm1Max = -30223;
+    public static final int arm1Min = -16;
+
+      
+    public static final int slideMax = 1000;
+    public static final int slideMin = 100;
+    public static final int  turretMax = 7636;
+    public static final int turretMin = 21;
 
     //Non-Drive Controller - 3D Joystick Logitech
     public static int elevatorTop = 8, elevatorBottom = 12, elevatorMiddle = 10, deployIntake = 9, turretLeft = 5, 

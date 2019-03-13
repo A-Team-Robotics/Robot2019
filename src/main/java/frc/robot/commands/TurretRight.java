@@ -1,38 +1,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.Constants;
 
-public class TurretRight extends Command{
+public class TurretRight extends CommandGroup{
     public TurretRight(){
-        requires(Robot.turret);
-    }
-    @Override
-    protected void initialize() {
-        Robot.turret.setTurretMotor(0.3);
-    }
-    @Override
-    protected void execute() {
-        Robot.turret.setTurretMotor(0.3);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        if(Robot.turret.getRightLimitSwitch() == false){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    @Override
-    protected void end() {
-        Robot.turret.stopTurretMotor();
-    }
-
-    @Override
-    protected void interrupted() {
-        Robot.turret.stopTurretMotor();
-    }
-    
+        addParallel(new WaitTurretToPos(Constants.turretTurnRightPos));
+    }    
 }

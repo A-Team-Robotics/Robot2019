@@ -1,15 +1,12 @@
+
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
-public class ElevatorLevel2Hatch extends InstantCommand{
-
+public class ElevatorLevel2Hatch extends CommandGroup{
     public ElevatorLevel2Hatch(){
-        requires(Robot.elevatorSystem);
-    }
-    @Override
-    protected void execute() {
-        Robot.elevatorSystem.setElevatorPosition(41948);
+       addSequential(new WaitElevatorToPos(Constants.elevatorLeveltwo));
     }
 }

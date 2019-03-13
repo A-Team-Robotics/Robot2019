@@ -58,8 +58,8 @@ public class TurretSystem extends Subsystem {
   /**
  * Stop the Turret Motor
  */
-  public void stopTurretMotor(){
-      _turretMotor.disable();
+  public void stopMotor(){
+      _turretMotor.stopMotor();
   }
 
   /**
@@ -91,7 +91,7 @@ public class TurretSystem extends Subsystem {
      return _turretMotor.getSelectedSensorPosition();
   }
 
-  public void setTurretPos(int pos){
+  public void setTurretPos(double pos){
       _turretMotor.set(ControlMode.Position, pos);
   }
 

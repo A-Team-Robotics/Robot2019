@@ -36,25 +36,23 @@ public class ArmPneumatics extends Subsystem{
     public boolean getBallStopButton(){
         return buttonStop.get();
     }
-
     
     public void log() {
         SmartDashboard.putBoolean("Button Stop Arm", getBallStopButton());
     }
 
     public void setRollersForward(){
-        _rollerMotorLeft.set(0.4);
-        _rollerMotorRight.set(ControlMode.PercentOutput, -0.4);
+        _rollerMotorLeft.set(Constants.ArmMotorSpeed);
+        _rollerMotorRight.set(ControlMode.PercentOutput, Constants.ArmMotorSpeed*-1);
     }
 
     public void stopRollers(){
         _rollerMotorLeft.stopMotor();
-        _rollerMotorRight.set(ControlMode.PercentOutput, 0);
-
+        _rollerMotorRight.set(ControlMode.Disabled, 0);
     }
 
     public void setRollersReverse(){
-        _rollerMotorLeft.set(-0.3);
+        _rollerMotorLeft.set(Constants.ArmMotorSpeed*-1);
         _rollerMotorRight.set(ControlMode.PercentOutput, 0.4);;
     }
 
@@ -71,4 +69,7 @@ public class ArmPneumatics extends Subsystem{
         setDefaultCommand(null);
     }
 
+    public void stopMotor(){
+        _rollerMotorLeft.stopMotor();
+    }
 }

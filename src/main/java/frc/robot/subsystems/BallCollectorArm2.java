@@ -22,26 +22,22 @@ public class BallCollectorArm2 extends Subsystem {
     protected void initDefaultCommand() {
         setDefaultCommand(null);
     }
-
-    public void  invertMotor(){
-         _armTwoMotor.setInverted(InvertType.InvertMotorOutput);
-    }
-
-    public void  unInvertMotor(){
-        _armTwoMotor.setInverted(InvertType.None);
-   }
-
     
     public void log() {
         SmartDashboard.putNumber("Ball Collector Arm Two",_armTwoMotor.getSelectedSensorPosition());
     }
 
-    public void setMotorTwo(double pos){
+    public void setMotorPos(double pos){
         _armTwoMotor.set(ControlMode.Position, pos);
     }
 
-    public int getMotorTwoPos(){
+    public int getMotorPos(){
         currentPosition = _armTwoMotor.getSelectedSensorPosition();
         return _armTwoMotor.getSelectedSensorPosition();
+    }
+
+    public void stopMotor(){
+        System.out.println("Turning of the Arm2 motor.");
+        _armTwoMotor.stopMotor();
     }
 }

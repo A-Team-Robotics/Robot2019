@@ -1,38 +1,13 @@
 package frc.robot.commands;
 
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.Constants;
 
-public class TurretLeft extends Command{
+public class TurretLeft extends CommandGroup{
     public TurretLeft(){
-        requires(Robot.turret);
-    }
-    @Override
-    protected void initialize() {
-        Robot.turret.setTurretMotor(-0.3);
-    }
-    @Override
-    protected void execute() {
-        Robot.turret.setTurretMotor(-0.3);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        if(Robot.turret.getLeftLimitSwitch() == false){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    @Override
-    protected void end() {
-        Robot.turret.stopTurretMotor();
-    }
-
-    @Override
-    protected void interrupted() {
-        Robot.turret.stopTurretMotor();
-    }
-    
+        addParallel(new WaitTurretToPos(Constants.turretTurnLeftPos));
+    }    
 }

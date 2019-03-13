@@ -22,17 +22,16 @@ public class ElevatorSystem extends Subsystem{
         }
         return _elavatorInstance;
     }
-
-    
-    
+   
     public void init() {
         _elevatorDriveMotor.setSensorPhase(true);
         _elevatorDriveMotor.setSelectedSensorPosition(0);
+       // _elevatorDriveMotor.setSafetyEnabled(true);
     }
 
     
     public void log() {
-        SmartDashboard.putNumber("Elevator Encoder Position", getElevaotrPosition());
+        SmartDashboard.putNumber("Elevator Encoder Position", getElevatorPosition());
         SmartDashboard.putNumber("Talon 5 Temp", _elevatorDriveMotor.getTemperature());
     }
 
@@ -47,14 +46,15 @@ public class ElevatorSystem extends Subsystem{
    *
    * @param speed Set the speed of the motor. Value should be 1.0 to -1.0
    */
-    public void setElevatorSpeed(double speed){
+    public void setMotorSpeed(double speed){
         _elevatorDriveMotor.set(speed);
     }
 
     /**
     * Stop the Elevator Motor
     */
-    public void stopElevatormotor(){
+    public void stopMotor(){
+        System.out.println("Turning of the elevator Motor.");
         _elevatorDriveMotor.stopMotor();
     }
 
@@ -76,7 +76,7 @@ public class ElevatorSystem extends Subsystem{
     *
     * @return the current position of the elevator as an integer
      */
-        public int getElevaotrPosition(){
+        public int getElevatorPosition(){
             return _elevatorDriveMotor.getSelectedSensorPosition(0);
         }
 

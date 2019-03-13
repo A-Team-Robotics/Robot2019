@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.*;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -24,9 +25,7 @@ public class GripperSystem extends Subsystem {
 
   public static DoubleSolenoid lowerGripper = new DoubleSolenoid(1, 0);
   private DoubleSolenoid upperGripper = new DoubleSolenoid(6, 7);
-
   private DigitalInput buttonBallStop = new DigitalInput(3);
-
   private VictorSPX gripperMotor = new VictorSPX(9);
   
 
@@ -40,13 +39,13 @@ public class GripperSystem extends Subsystem {
   }
 
   public void stopMotor(){
-    gripperMotor.set(ControlMode.PercentOutput, 0);
+    gripperMotor.set(ControlMode.Disabled, 0);
   }
 
   public void deployBall(){
-    upperGripper.set(Value.kForward);//Open Upper Gripper
+    upperGripper.set(Value.kReverse);//Open Upper Gripper
     lowerGripper.set(Value.kReverse);//Open Lower Gripper
-    gripperMotor.set(ControlMode.PercentOutput,0.5);
+    gripperMotor.set(ControlMode.PercentOutput,Constants.gripperMotorDeployBallSpeed);
   }
   public void deployHatch(){
     lowerGripper.set(Value.kForward);
@@ -54,16 +53,18 @@ public class GripperSystem extends Subsystem {
   public void recieveCargo(){
     upperGripper.set(Value.kForward);
     lowerGripper.set(Value.kReverse);
-    gripperMotor.set(ControlMode.PercentOutput,-0.5);
+    gripperMotor.set(ControlMode.PercentOutput,Constants.gripperMotorReciveBallSpeed*-1);
   }
   public void recieveHatch(){
-    //upperGripper.set(Value.kForward);
+    upperGripper.set(Value.kReverse);
     lowerGripper.set(Value.kReverse);
-    gripperMotor.set(ControlMode.PercentOutput,0);
+    gripperMotor.set(ControlMode.Disabled,0);
   }
   public void loadBall(){
-    lowerGripper.set(Value.kForward);//Close Lower Gripper
-    upperGripper.set(Value.kReverse);//Close Upper Gripper
-    gripperMotor.set(ControlMode.PercentOutput,0);
+    if(Robot.m_oi.joystickController.getTrigger()==false){
+      lowerGripper.set(Value.kForward);//Close Lower Gripper
+      upperGripper.set(Value.kReverse);//Close Upper Gripper
+      gripperMotor.set(ControlMode.Disabled,0);
+    }
   }
 }

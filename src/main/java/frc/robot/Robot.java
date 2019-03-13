@@ -16,10 +16,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.LoadBallCollector;
 import frc.robot.commands.ReadyGripper;
-import frc.robot.commands.StopRollers;
+import frc.robot.commands.StopArmRollers;
+import frc.robot.commands.StopTurretArm;
 import frc.robot.subsystems.ArmPneumatics;
 import frc.robot.subsystems.BallCollectorArm2;
-import frc.robot.subsystems.BallCollectorSystem;
+import frc.robot.subsystems.BallCollectorArm1;
 import frc.robot.subsystems.DriveSystem;
 import frc.robot.subsystems.ElevatorSystem;
 import frc.robot.subsystems.GripperSystem;
@@ -36,7 +37,7 @@ import frc.robot.subsystems.TurretSystem;
 public class Robot extends TimedRobot {
   public static ArmPneumatics arm = new ArmPneumatics();
   public static BallCollectorArm2 ballCollectorArm2 = new BallCollectorArm2();
-  public static BallCollectorSystem ballCollector = new BallCollectorSystem();
+  public static BallCollectorArm1 ballCollectorArm1 = new BallCollectorArm1();
   public static ElevatorSystem elevatorSystem = new ElevatorSystem();
   public static GripperSystem gripperSystem = new GripperSystem();
   public static SlideSystem slideSystem = new SlideSystem();
@@ -56,7 +57,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    ballCollector.init();
+    ballCollectorArm1.init();
     ballCollectorArm2.init();
     comp.setClosedLoopControl(true);
     comp.start();
@@ -84,6 +85,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    arm.stopRollers();
+    ballCollectorArm2.stopMotor();
+    ballCollectorArm1.stopMotor();
+    elevatorSystem.stopMotor();
+    gripperSystem.stopMotor();
+    slideSystem.stopMotor();
+    turret.stopMotor();
   }
 
   @Override
@@ -138,14 +146,16 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     SmartDashboard.putBoolean("Forward Limit", Robot.slideSystem.getForwardLimit());
     SmartDashboard.putBoolean("Reverse Limit", Robot.slideSystem.getReverseLimit());
-    ballCollector.log();
+    ballCollectorArm1.log();
     ballCollectorArm2.log();
     turret.log();
     SmartDashboard.putData(Robot.drive._driveBase);
     elevatorSystem.log();
+
     if(Robot.gripperSystem.getButton()==false){
       Scheduler.getInstance().add(new ReadyGripper());
     }
+    
     if(Robot.arm.getBallStopButton()==false){
       Scheduler.getInstance().add(new LoadBallCollector());
     }

@@ -11,19 +11,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
-public class BallCollectorSystem extends Subsystem{
+public class BallCollectorArm1 extends Subsystem{
 
     private WPI_TalonSRX _armOneMotor = new WPI_TalonSRX(6);
 
-    private static BallCollectorSystem _ballCollectorSystemInstance = null;
+    private static BallCollectorArm1 _ballCollectorSystemInstance = null;
 
-    public BallCollectorSystem(){
+    public BallCollectorArm1(){
         super("Intake");
     }
 
-    public static BallCollectorSystem getInstance(){
+    public static BallCollectorArm1 getInstance(){
         if(_ballCollectorSystemInstance == null){
-            _ballCollectorSystemInstance = new BallCollectorSystem();
+            _ballCollectorSystemInstance = new BallCollectorArm1();
         }
         return _ballCollectorSystemInstance;
     }
@@ -37,13 +37,19 @@ public class BallCollectorSystem extends Subsystem{
         SmartDashboard.putNumber("Ball Collector Arm One", _armOneMotor.getSelectedSensorPosition());
     }
 
-    public void setMotorOne(int pos){
+    public void setMotorPos(int pos){
         _armOneMotor.set(ControlMode.Position, pos);
     }
 
-    public int getArmOnePosition(){
+    public int getMotorPos(){
         return _armOneMotor.getSelectedSensorPosition();
     }
+
+    public void stopMotor(){
+        System.out.println("Turning of the arm 1 motor.");
+        _armOneMotor.stopMotor();
+    }
+
     
     @Override
     protected void initDefaultCommand() {

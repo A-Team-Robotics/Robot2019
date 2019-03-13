@@ -10,13 +10,14 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.*;
 import frc.robot.commands.Climb;
 import frc.robot.commands.CloseArmSpin;
 import frc.robot.commands.DeployBall;
 import frc.robot.commands.DeployBallCollector;
+import frc.robot.commands.ElevatorLevel1Hatch;
 import frc.robot.commands.ElevatorLevel2Hatch;
 import frc.robot.commands.ElevatorLevel3Hatch;
-import frc.robot.commands.ElevatorLoadCargo;
 import frc.robot.commands.MoveSlideBack;
 import frc.robot.commands.MoveSlideFront;
 import frc.robot.commands.ReadyGripper;
@@ -39,7 +40,7 @@ public class OI {
    public static Joystick joystickController = new Joystick(1);
 
    //Joystick Buttons
-   Button releaseBall = new JoystickButton(joystickController, 1);
+  Button releaseBall = new JoystickButton(joystickController, 1);
    Button readyGripper = new JoystickButton(joystickController, 2);
    Button recieveBall = new JoystickButton(joystickController, 3);
    Button recieveHatch = new JoystickButton(joystickController, 4);
@@ -47,9 +48,10 @@ public class OI {
    Button moveSlideReverse = new JoystickButton(joystickController, 6);
    Button elevatorLevel3Hatch = new JoystickButton(joystickController, 8);
    Button elevatorLevel2Hatch = new JoystickButton(joystickController, 10);
-   Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
-   Button collectBalls = new JoystickButton(joystickController, 11);
-   Button stopCollectingBalls = new JoystickButton(joystickController, 7);
+   Button elevatorLevel1Hatch = new JoystickButton(joystickController, 12);
+   //Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
+   Button collectBalls = new JoystickButton(xboxController, 4);
+   Button stopCollectingBalls = new JoystickButton(xboxController, 1);
    Button closeArm = new JoystickButton(joystickController, 9);
 
    //Xbox Buttons
@@ -65,7 +67,7 @@ public class OI {
      moveSlideForward.whenPressed(new MoveSlideFront());
      moveSlideReverse.whenPressed(new MoveSlideBack());
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
-     elevaorLoadCargo.whenPressed(new ElevatorLoadCargo());
+     elevatorLevel1Hatch.whenPressed(new ElevatorLevel1Hatch());
      elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
      collectBalls.whenPressed(new DeployBallCollector());
      stopCollectingBalls.whenPressed(new RetractBallCollector());

@@ -11,4 +11,14 @@ public class RunRollersReverse extends InstantCommand{
     protected void initialize() {
             Robot.arm.setRollersReverse();
     }
+    
+    @Override
+	protected void end() {
+    	Robot.arm.stopMotor();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }    
 }

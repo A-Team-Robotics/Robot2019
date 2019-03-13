@@ -1,12 +1,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-
 import frc.robot.Robot;
 
-public class SlideEncoderFront extends InstantCommand{
+public class openArm extends InstantCommand {
+    public openArm(){
+        requires(Robot.arm);
+    }
+    
     @Override
     protected void execute() {
-        Robot.slideSystem.setPID(3000);
+        Robot.arm.openArms();
     }
+
 }

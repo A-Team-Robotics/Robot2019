@@ -3,17 +3,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class StopRollers extends InstantCommand{
-    public StopRollers(){
+public class StopArmRollers extends InstantCommand{
+    public StopArmRollers(){
         requires(Robot.arm);
     }
     @Override
     protected void initialize() {
         Robot.arm.stopRollers();
-        Robot.arm.closeArms();
+        //Robot.arm.closeArms();
     }
     @Override
     protected void execute() {
         Robot.arm.stopRollers();
+    }
+
+    @Override
+	protected void end() {
+    	Robot.arm.stopMotor();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
     }
 }

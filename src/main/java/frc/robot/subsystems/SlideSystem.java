@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.*;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -21,8 +22,7 @@ public class SlideSystem extends Subsystem {
   // here. Call these from Commands.
 
   private final DigitalInput _slideForward = new DigitalInput(8);
-
-    private final DigitalInput _slideReverse = new DigitalInput(9);
+  private final DigitalInput _slideReverse = new DigitalInput(9);
 
   private WPI_TalonSRX slideMotor = new WPI_TalonSRX(8);
 
@@ -32,18 +32,19 @@ public class SlideSystem extends Subsystem {
   }
 
   public void stopMotor(){
-    slideMotor.set(0);
+    System.out.println("Turning off the slide Motor.");
+    slideMotor.stopMotor();
   }
 
   public void moveFront(){
-    slideMotor.set(1);
+    slideMotor.set(Constants.slideMotorspeed);
   }
 
   public void moveReverse(){
-      slideMotor.set(-1);
+      slideMotor.set(Constants.slideMotorspeed*-1);
   }
 
-  public void setPID(int pos){
+  public void setMotorPos(int pos){
     slideMotor.set(ControlMode.Position, pos);
   }
 
