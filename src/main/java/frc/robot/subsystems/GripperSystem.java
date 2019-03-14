@@ -48,7 +48,9 @@ public class GripperSystem extends Subsystem {
     gripperMotor.set(ControlMode.PercentOutput,Constants.gripperMotorDeployBallSpeed);
   }
   public void deployHatch(){
-    lowerGripper.set(Value.kForward);
+    upperGripper.set(Value.kForward);
+    lowerGripper.set(Value.kReverse);
+    gripperMotor.set(ControlMode.PercentOutput,Constants.gripperMotorDeployBallSpeed);
   }
   public void recieveCargo(){
     upperGripper.set(Value.kForward);
@@ -60,6 +62,13 @@ public class GripperSystem extends Subsystem {
     lowerGripper.set(Value.kReverse);
     gripperMotor.set(ControlMode.Disabled,0);
   }
+
+  public void grabHatch(){
+    upperGripper.set(Value.kReverse);
+    lowerGripper.set(Value.kForward);
+    gripperMotor.set(ControlMode.Disabled,0);
+  }
+
   public void loadBall(){
     if(Robot.m_oi.joystickController.getTrigger()==false){
       lowerGripper.set(Value.kForward);//Close Lower Gripper

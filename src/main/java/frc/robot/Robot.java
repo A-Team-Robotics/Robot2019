@@ -48,6 +48,7 @@ public class Robot extends TimedRobot {
   public static TurretSystem turret = new TurretSystem();
   public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
+  public static String loadItem = "none";
 
   Compressor comp = new Compressor(0);
   Solenoid led = new Solenoid(2);

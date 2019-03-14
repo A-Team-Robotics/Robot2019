@@ -43,7 +43,7 @@ public class ArmPneumatics extends Subsystem{
 
     public void setRollersForward(){
         _rollerMotorLeft.set(Constants.ArmMotorSpeed);
-        _rollerMotorRight.set(ControlMode.PercentOutput, -1);
+        _rollerMotorRight.set(ControlMode.PercentOutput, -Constants.ArmMotorSpeed);
     }
 
     public void stopRollers(){
@@ -52,7 +52,7 @@ public class ArmPneumatics extends Subsystem{
     }
 
     public void setRollersReverse(){
-        _rollerMotorLeft.set(Constants.ArmMotorSpeed*-1);
+        _rollerMotorLeft.set(-Constants.ArmMotorSpeed);
         _rollerMotorRight.set(ControlMode.PercentOutput, Constants.ArmMotorSpeed);;
     }
 

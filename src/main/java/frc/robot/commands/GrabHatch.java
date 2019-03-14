@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
-public class RecieveHatch extends InstantCommand {
-    public RecieveHatch() {
+public class GrabHatch extends InstantCommand {
+    public GrabHatch() {
         requires(Robot.gripperSystem);
     }
     @Override
     protected void execute() {
-        Robot.gripperSystem.recieveHatch();
-        Robot.loadItem = "none";
+        Robot.gripperSystem.grabHatch();
+        Robot.loadItem = "hatch";
         Scheduler.getInstance().add(new SlideBack());
     }
 }

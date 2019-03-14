@@ -10,6 +10,7 @@ public class ReadyGripper extends InstantCommand {
     
     @Override
     protected void execute() {
+        Robot.loadItem = "ball";
         Robot.gripperSystem.loadBall();
     }
 

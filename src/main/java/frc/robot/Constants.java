@@ -49,7 +49,7 @@ public class Constants{
     public static final int arm1RetractPos1 = 13000;
     public static final int arm1LoadPos = 15000;
     public static final int arm1RetractPosFinal = 0;
-    public static final int arm2RetractPosFinal = 458;
+    public static final int arm2RetractPosFinal = 394;
     public static final int arm2CollectPos1 = arm2RetractPosFinal-40;
     public static final int arm2CollectPosfinal = arm2RetractPosFinal-220;
     public static final int arm2RetractPos1 = arm2CollectPosfinal + 10;

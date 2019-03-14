@@ -11,19 +11,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
-import frc.robot.commands.Climb;
-import frc.robot.commands.CloseArmSpin;
-import frc.robot.commands.DeployBall;
-import frc.robot.commands.DeployBallCollector;
-import frc.robot.commands.ElevatorLevel1Hatch;
-import frc.robot.commands.ElevatorLevel2Hatch;
-import frc.robot.commands.ElevatorLevel3Hatch;
-import frc.robot.commands.SlideBack;
-import frc.robot.commands.SlideFront;
-import frc.robot.commands.ReadyGripper;
-import frc.robot.commands.RecieveCargo;
-import frc.robot.commands.RecieveHatch;
-import frc.robot.commands.RetractBallCollector;
 
 
 /**
@@ -41,7 +28,7 @@ public class OI {
 
    //Joystick Buttons
   Button releaseBall = new JoystickButton(joystickController, 1);
-   Button readyGripper = new JoystickButton(joystickController, 2);
+   Button grabHatch = new JoystickButton(joystickController, 2);
    Button recieveBall = new JoystickButton(joystickController, 3);
    Button recieveHatch = new JoystickButton(joystickController, 4);
    Button moveSlideForward = new JoystickButton(joystickController, 6);
@@ -60,8 +47,8 @@ public class OI {
    Button climb2 = new JoystickButton(xboxController, 5);
 
    public OI(){
-     releaseBall.whenPressed(new shootBall());
-     readyGripper.whenPressed(new ReadyGripper());
+     releaseBall.whenPressed(new DeliverPayLoad());
+     grabHatch.whenPressed(new GrabHatch());
      recieveBall.whenPressed(new RecieveCargo());
      recieveHatch.whenPressed(new RecieveHatch());
      moveSlideForward.whenPressed(new SlideFront());
