@@ -61,11 +61,6 @@ public class OI {
 
    public OI(){
      releaseBall.whenPressed(new shootBall());
-     readyGripper.whenPressed(new ReadyGripper());
-     recieveBall.whenPressed(new RecieveCargo());
-     recieveHatch.whenPressed(new RecieveHatch());
-     moveSlideForward.whenPressed(new SlideFront());
-     moveSlideReverse.whenPressed(new SlideBack());
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
      elevatorLevel1Hatch.whenPressed(new ElevatorLevel1Hatch());
      elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
