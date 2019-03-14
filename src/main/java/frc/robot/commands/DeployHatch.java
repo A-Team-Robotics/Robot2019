@@ -11,6 +11,6 @@ public class DeployHatch extends InstantCommand {
     @Override
     protected void execute() {
         Robot.gripperSystem.deployHatch();
-        Robot.loadItem = "ball";
+        Robot.loadItem = "none";
     }
 }

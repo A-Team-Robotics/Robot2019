@@ -27,7 +27,7 @@ public class OI {
    public static Joystick joystickController = new Joystick(1);
 
    //Joystick Buttons
-  Button releaseBall = new JoystickButton(joystickController, 1);
+   Button releaseBall = new JoystickButton(joystickController, 1);
    Button grabHatch = new JoystickButton(joystickController, 2);
    Button recieveBall = new JoystickButton(joystickController, 3);
    Button recieveHatch = new JoystickButton(joystickController, 4);

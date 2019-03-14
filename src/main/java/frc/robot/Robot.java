@@ -161,7 +161,7 @@ public class Robot extends TimedRobot {
     if(Robot.gripperSystem.getButton()==false){
       Scheduler.getInstance().add(new ReadyGripper());
     }
-
+//human ball position 36037s
     if(Robot.turret.getLeftLimitSwitch()==false){
      int currentPos = Robot.turret.getPosition();
      Constants.turretTurnMinPos = currentPos;
