@@ -9,11 +9,13 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 
 /**
@@ -26,7 +28,7 @@ public class GripperSystem extends Subsystem {
   public static DoubleSolenoid lowerGripper = new DoubleSolenoid(1, 0);
   private DoubleSolenoid upperGripper = new DoubleSolenoid(6, 7);
   private DigitalInput buttonBallStop = new DigitalInput(3);
-  private VictorSPX gripperMotor = new VictorSPX(9);
+  private WPI_TalonSRX gripperMotor = new WPI_TalonSRX(9);
   
 
   @Override
@@ -35,6 +37,7 @@ public class GripperSystem extends Subsystem {
   }
 
   public boolean getButton(){
+    SmartDashboard.putBoolean("Gripper Button", buttonBallStop.get());
     return buttonBallStop.get();
   }
 

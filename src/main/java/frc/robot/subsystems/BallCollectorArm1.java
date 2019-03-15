@@ -49,7 +49,6 @@ public class BallCollectorArm1 extends Subsystem{
         System.out.println("Turning of the arm 1 motor.");
         _armOneMotor.stopMotor();
     }
-
     
     @Override
     protected void initDefaultCommand() {

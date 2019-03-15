@@ -14,7 +14,7 @@ import frc.robot.Constants;
 public class ArmPneumatics extends Subsystem{
 
     private WPI_TalonSRX _rollerMotorLeft = new WPI_TalonSRX(11);
-    private VictorSPX _rollerMotorRight = new VictorSPX(3);
+    private WPI_TalonSRX _rollerMotorRight = new WPI_TalonSRX(12);
 
     private DoubleSolenoid _armExtendor = new DoubleSolenoid(Constants.BALL_COLLECTOR_SOLENOID[0],Constants.BALL_COLLECTOR_SOLENOID[1]);
 
@@ -34,6 +34,7 @@ public class ArmPneumatics extends Subsystem{
     }
 
     public boolean getBallStopButton(){
+        SmartDashboard.putBoolean("Ball Collect Button", buttonStop.get());
         return buttonStop.get();
     }
     

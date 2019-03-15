@@ -24,7 +24,7 @@ public class DriveSystem extends Subsystem {
     public static int CM_CONVERSION = 360;
 
     private WPI_TalonSRX _backRightCIM = new WPI_TalonSRX(1);// Change to constant later
-    private WPI_TalonSRX _frontRightCIM = new WPI_TalonSRX(12);// Change to constant later
+    private WPI_TalonSRX _frontRightCIM = new WPI_TalonSRX(3);// Change to constant later
     private WPI_TalonSRX _backLeftCIM = new WPI_TalonSRX(2);//Change to constant later
     private WPI_TalonSRX _frontLeftCIM = new WPI_TalonSRX(4);//Change to constant later
 
