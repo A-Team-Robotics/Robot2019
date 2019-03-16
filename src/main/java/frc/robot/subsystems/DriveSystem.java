@@ -1,21 +1,14 @@
 package frc.robot.subsystems;
 
-import java.text.DecimalFormat;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.RobotMap;
 import frc.robot.commands.XboxDrive;
 
 public class DriveSystem extends Subsystem {
@@ -34,15 +27,6 @@ public class DriveSystem extends Subsystem {
     
 
     //TODO set access modifiers and clean duplicate objects in origram
-    NetworkTableEntry targetOffSet;
-    NetworkTableEntry driveInput;
-    NetworkTableInstance netTableInst = NetworkTableInstance.getDefault();
-    NetworkTable visionTable = netTableInst.getTable("videoInfo");
-    double targetOffSetNumber = 0.0;
-    double driveInputNumber = 0.0;
-    boolean driveModeLastPressed = false;
-    DecimalFormat df = new DecimalFormat(".##");
-    int dashPrintFactor = 0;
 
     public PIDController m_tracker;
 
@@ -76,7 +60,7 @@ public class DriveSystem extends Subsystem {
    * @param driveController joystick controller object to get axis value from
    */
     public void arcadeDrive(Joystick driveController){
-        _driveBase.arcadeDrive((driveController.getRawAxis(1))/driveSpeed, (driveController.getRawAxis(4))/driveSpeed, true);
+        _driveBase.arcadeDrive((driveController.getRawAxis(1))/RobotMap.driveSpeed, (driveController.getRawAxis(4))/RobotMap.driveSpeed, true);
     }
 
      /**
@@ -141,38 +125,38 @@ public class DriveSystem extends Subsystem {
         return (int)(_backLeftCIM.getTemperature()+_backRightCIM.getTemperature()+_frontLeftCIM.getTemperature()+_frontRightCIM.getTemperature())/4;
     }
 
-    public void inittrackTargetDrive(){
-        m_tracker = new PIDController(1.0,0.5, 0.5, new PIDSource() {
-            PIDSourceType m_sourceType = PIDSourceType.kDisplacement;
+    // public void inittrackTargetDrive(){
+    //     m_tracker = new PIDController(1.0,0.5, 0.5, new PIDSource() {
+    //         PIDSourceType m_sourceType = PIDSourceType.kDisplacement;
       
-            @Override
-            public double pidGet() {
-              return targetOffSetNumber;
-            }
+    //         @Override
+    //         public double pidGet() {
+    //           return targetOffSetNumber;
+    //         }
       
-            @Override
-            public void setPIDSourceType(PIDSourceType pidSource) {
-              m_sourceType = pidSource;
-            }
+    //         @Override
+    //         public void setPIDSourceType(PIDSourceType pidSource) {
+    //           m_sourceType = pidSource;
+    //         }
       
-            @Override
-            public PIDSourceType getPIDSourceType() {
-              return m_sourceType;
-            }
-          }, d -> _driveBase.arcadeDrive(0.5, d));
-          m_tracker.setAbsoluteTolerance(5);
-          m_tracker.setInputRange(-180, 180);
-          m_tracker.setSetpoint(0);
-          m_tracker.reset();
-        }
+    //         @Override
+    //         public PIDSourceType getPIDSourceType() {
+    //           return m_sourceType;
+    //         }
+    //       }, d -> _driveBase.arcadeDrive(0.5, d));
+    //       m_tracker.setAbsoluteTolerance(5);
+    //       m_tracker.setInputRange(-180, 180);
+    //       m_tracker.setSetpoint(0);
+    //       m_tracker.reset();
+    //     }
 
-    public void trackTargetDrive(){
-        SmartDashboard.putData(m_tracker);
-        if(targetOffSet.exists()){
-            targetOffSetNumber = targetOffSet.getValue().getDouble();
-        }
-        m_tracker.enable();
-    }
+    // public void trackTargetDrive(){
+    //     SmartDashboard.putData(m_tracker);
+    //     if(targetOffSet.exists()){
+    //         targetOffSetNumber = targetOffSet.getValue().getDouble();
+    //     }
+    //     m_tracker.enable();
+    // }
 
     public int getDistance(){
         return ((-_backLeftCIM.getSelectedSensorPosition()+_backRightCIM.getSelectedSensorPosition())/2)/CM_CONVERSION;

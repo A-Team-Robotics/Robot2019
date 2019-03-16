@@ -30,6 +30,8 @@ public class RobotMap {
   public static final int otherDeployS2 = 2;
   public static final int elevatorDeployBallPos = 30000;
 
+  public static int driveSpeed = 1;
+
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;

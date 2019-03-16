@@ -1,48 +1,23 @@
 package frc.robot.commands;
 
-import java.util.Optional;
-
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Constants;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Robot;
 
-public class WaitTurretToPos extends Command{
+public class WaitTurretToPos extends InstantCommand{
     int pos = 0;
-    double turretSpeed = Constants.turretSpeed;
+
     public WaitTurretToPos(int pos){
         this.pos=pos;
         requires(Robot.turret);
     }
 
-    public WaitTurretToPos(int pos, double turretSpeed){
-        this.pos=pos;
-        this.turretSpeed = turretSpeed;
-        requires(Robot.turret);
-    }
-
     @Override
     protected void initialize() {
-        Robot.turret.setTurretMotor(turretSpeed);
+        Robot.turret.setTurretPos(pos);
     }
-
     @Override
-    protected void execute() { 
-    //this sub is continously call by the robot program
-            Robot.turret.setTurretPos(pos);        
-    }
-
-    @Override
-    protected boolean isFinished() {
-        if(Robot.turret.getPosition()>(pos-30) && Robot.turret.getPosition()<(pos+30)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-    @Override
-    protected void interrupted() {
-        Robot.turret.stopMotor();
+    protected void end() {
+        Scheduler.getInstance().add(new MoveTurret());
     }
 }

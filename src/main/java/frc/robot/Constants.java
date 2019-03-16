@@ -71,8 +71,8 @@ public class Constants{
     public static final int elevatorTopValue = 200000;
     public static final int elevatorBottomValue = 0;
     
-    public static final int elevatorLevelOne = 0;
-    public static final int elevatorLevelThree = 117182;
+    public static final int elevatorLevelOne = 700;
+       public static final int elevatorLevelThree = 119990;
     public static final int elevatorLeveltwo = (elevatorLevelOne+elevatorLevelThree)/2;
     
     public static final int reverseMaxBallCollectorArm2 = 549;

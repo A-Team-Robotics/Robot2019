@@ -36,17 +36,22 @@ public class OI {
    Button elevatorLevel3Hatch = new JoystickButton(joystickController, 8);
    Button elevatorLevel2Hatch = new JoystickButton(joystickController, 10);
    Button elevatorLevel1Hatch = new JoystickButton(joystickController, 12);
-   //Button elevaorLoadCargo = new JoystickButton(joystickController, 12);
+   Button elevaorLevelCargo = new JoystickButton(joystickController, 9);
+   Button elevaorLevelHumanBall = new JoystickButton(joystickController, 11);
    Button collectBalls = new JoystickButton(xboxController, 4);
    Button stopCollectingBalls = new JoystickButton(xboxController, 1);
-   Button closeArm = new JoystickButton(joystickController, 9);
+   Button slideControl = new JoystickButton(joystickController, 7);
+   //Button closeArm = new JoystickButton(joystickController, 9);
 
    //Xbox Buttons
    Button turretLeft = new JoystickButton(xboxController, 3);
    Button turretRight = new JoystickButton(xboxController, 2);
    Button climb2 = new JoystickButton(xboxController, 5);
+   Button speed = new JoystickButton(xboxController, 8);
 
    public OI(){
+     slideControl.whileHeld(new SlideControl());
+     slideControl.whenReleased(new StopSlide());
      releaseBall.whenPressed(new DeliverPayLoad());
      grabHatch.whenPressed(new GrabHatch());
      recieveBall.whenPressed(new RecieveCargo());
@@ -56,10 +61,13 @@ public class OI {
      elevatorLevel2Hatch.whenPressed(new ElevatorLevel2Hatch());
      elevatorLevel1Hatch.whenPressed(new ElevatorLevel1Hatch());
      elevatorLevel3Hatch.whenPressed(new ElevatorLevel3Hatch());
+     elevaorLevelCargo.whenPressed(new ElevatorCargoLoad());
      collectBalls.whenPressed(new DeployBallCollector());
+     elevaorLevelHumanBall.whenPressed(new ElevatorHumanLoad());
      stopCollectingBalls.whenPressed(new RetractBallCollector());
-     closeArm.whenPressed(new CloseArmSpin());
+     //closeArm.whenPressed(new CloseArmSpin());
      climb2.whenPressed(new Climb());
+     speed.whenPressed(new SpeedControl());
    }
 
   // There are a few additional built in buttons you can use. Additionally,

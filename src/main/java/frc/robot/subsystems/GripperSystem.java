@@ -46,7 +46,7 @@ public class GripperSystem extends Subsystem {
   }
 
   public void deployBall(){
-    upperGripper.set(Value.kReverse);//Open Upper Gripper
+    upperGripper.set(Value.kForward);//Open Upper Gripper
     lowerGripper.set(Value.kReverse);//Open Lower Gripper
     gripperMotor.set(ControlMode.PercentOutput,Constants.gripperMotorDeployBallSpeed);
   }

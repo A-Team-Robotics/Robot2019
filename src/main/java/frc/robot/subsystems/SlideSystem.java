@@ -36,6 +36,10 @@ public class SlideSystem extends Subsystem {
     slideMotor.stopMotor();
   }
 
+  public void joyControl(double percent){
+    slideMotor.set(percent);
+  }
+
   public void moveFront(){
     slideMotor.set(Constants.slideMotorspeed);
   }

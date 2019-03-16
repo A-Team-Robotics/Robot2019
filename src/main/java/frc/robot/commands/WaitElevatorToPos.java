@@ -40,7 +40,7 @@ public class WaitElevatorToPos extends Command{
 
     @Override
     protected boolean isFinished() {
-        if(Robot.elevatorSystem.getElevatorPosition()>(pos-80) && Robot.elevatorSystem.getElevatorPosition()<(pos+80)){
+        if(Robot.elevatorSystem.getElevatorPosition()>(pos-50) && Robot.elevatorSystem.getElevatorPosition()<(pos+50)){
             return true;
         }else{
             return false;

@@ -179,11 +179,11 @@ public class Robot extends TimedRobot {
     
     if(Robot.arm.getBallStopButton()==false){
       double pos = (Constants.turretMax + Constants.turretMin)/2;
-        if(Robot.turret.getPosition()>(pos-30) && Robot.turret.getPosition()<(pos+30)){
-            // Turret should be in place.
-        }else{
+        // if(Robot.turret.getPosition()>(pos-30) && Robot.turret.getPosition()<(pos+30)){
+        //     // Turret should be in place.
+        // }else{
           Scheduler.getInstance().add(new LoadBallCollector());
-        }
+        //}
       }
     }
 
