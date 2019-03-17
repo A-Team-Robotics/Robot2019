@@ -1,12 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class WaitArm2ToPos extends Command {
+public class WaitArm2ToBacks extends Command {
 
     int pos = 0;
-    public WaitArm2ToPos(int pos) {
+    public WaitArm2ToBacks(int pos) {
         this.pos=pos;
         requires(Robot.ballCollectorArm2);
     }
@@ -19,7 +20,8 @@ public class WaitArm2ToPos extends Command {
 
     @Override
     protected boolean isFinished() {
-       if(Robot.ballCollectorArm2.getMotorPos()<(pos+2)){
+       if(Robot.ballCollectorArm2.getMotorPos()>(pos-2)){
+        SmartDashboard.putBoolean("Finished Moving 2", true);
             return true;
        }else{
            return false;         

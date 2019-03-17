@@ -7,7 +7,8 @@ import frc.robot.Robot;
 public class closeArm extends Command{
     @Override
     protected void execute() {
-        Robot.arm.closeArms();;
+        Robot.arm.closeArms();
+        Robot.arm.stopRollers();
     }
 
     @Override

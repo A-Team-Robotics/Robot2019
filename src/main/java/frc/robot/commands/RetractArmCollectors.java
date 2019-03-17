@@ -10,5 +10,6 @@ public class RetractArmCollectors extends InstantCommand {
     @Override
     protected void execute() {
         Robot.arm.closeArms();
+        
     }
 }

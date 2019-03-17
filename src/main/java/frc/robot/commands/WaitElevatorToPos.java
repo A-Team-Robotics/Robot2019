@@ -12,32 +12,17 @@ public class WaitElevatorToPos extends Command{
         requires(Robot.elevatorSystem);
     }
 
-    public WaitElevatorToPos(int pos, double timeOut){
-        this.pos=pos;
-        requires(Robot.elevatorSystem);
-        setTimeout(timeOut);
-    }
-
     @Override
-    protected void initialize() {           
+    protected void initialize() {    
+        Robot.elevatorSystem.setElevatorPosition(pos);          
     }
 
     @Override
     protected void execute() { 
     //this sub is continously call by the robot program 
-    Robot.elevatorSystem.setElevatorPosition(pos);      
+      
     }
-
-    @Override
-	protected void end() {
-    	
-    }
-
-    @Override
-    protected void interrupted() {
-        Robot.elevatorSystem.stopMotor();
-    }
-
+    
     @Override
     protected boolean isFinished() {
         if(Robot.elevatorSystem.getElevatorPosition()>(pos-50) && Robot.elevatorSystem.getElevatorPosition()<(pos+50)){

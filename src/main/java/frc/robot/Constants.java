@@ -42,10 +42,10 @@ public class Constants{
     //Encoder and Potentiometer Values
 
     //Extend, Retract Arm  and Load Cargo constants.
-    public static final double ArmMotorSpeed = 0.475;
+    public static final double ArmMotorSpeed = 0.6;
     public static final int elevatorLiftToClearGrippersPos = 18000;
     public static final int elevatorLoadcargo = 0;
-    public static final int arm1collectPosFinal = 18100;
+    public static final int arm1collectPosFinal = 18200;
     public static final int arm1RetractPos1 = 13000;
     public static final int arm1LoadPos = 15000;
     public static final int arm1RetractPosFinal = 0;
@@ -71,7 +71,7 @@ public class Constants{
     public static final int elevatorTopValue = 200000;
     public static final int elevatorBottomValue = 0;
     
-    public static final int elevatorLevelOne = 700;
+    public static final int elevatorLevelOne = 2500;
        public static final int elevatorLevelThree = 119990;
     public static final int elevatorLeveltwo = (elevatorLevelOne+elevatorLevelThree)/2;
     

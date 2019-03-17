@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Constants;
-import frc.robot.RobotMap;
+import frc.robot.Robot;
 
 public class RetractBallCollector extends CommandGroup{
     public RetractBallCollector(){
-        addSequential(new WaitElevatorToPos(Constants.elevatorLiftToClearGrippersPos));
+        Robot.continueLoad=false;
+        addSequential(new WaitElevatorToPos(38000));
         addParallel(new closeArm());
         addParallel(new StopArmRollers());
         addParallel(new WaitArm2ToPos(Constants.arm2RetractPos1));

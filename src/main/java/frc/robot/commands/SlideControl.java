@@ -12,10 +12,11 @@ public class SlideControl extends InstantCommand {
     
     @Override
     protected void initialize() {
-        if(!Robot.slideSystem.getReverseLimit()&&OI.joystickController.getRawAxis(1)>0){
-            Robot.slideSystem.joyControl(OI.joystickController.getRawAxis(1));
-        }
-        if(!Robot.slideSystem.getForwardLimit()&&OI.joystickController.getRawAxis(1)<0){
+        if(Robot.slideSystem.getForwardLimit()==false&&Robot.slideSystem.getReverseLimit()==true){
+            Robot.slideSystem.joyControl(-Math.abs(OI.joystickController.getRawAxis(1)));
+        }else if(Robot.slideSystem.getReverseLimit()==false&&Robot.slideSystem.getForwardLimit()==true){
+            Robot.slideSystem.joyControl(Math.abs(OI.joystickController.getRawAxis(1)));
+        }else{
             Robot.slideSystem.joyControl(OI.joystickController.getRawAxis(1));
         }
         // }

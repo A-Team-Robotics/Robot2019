@@ -20,7 +20,6 @@ import frc.robot.commands.LoadBallCollector;
 import frc.robot.commands.MoveTurret;
 import frc.robot.commands.ReadyGripper;
 import frc.robot.commands.StopArmRollers;
-import frc.robot.commands.StopTurretArm;
 import frc.robot.subsystems.ArmPneumatics;
 import frc.robot.subsystems.BallCollectorArm2;
 import frc.robot.subsystems.BallCollectorArm1;
@@ -49,6 +48,7 @@ public class Robot extends TimedRobot {
   public static DriveSystem drive = new DriveSystem();
   public static OI m_oi;
   public static String loadItem = "none";
+  public static boolean continueLoad = false;
 
   Compressor comp = new Compressor(0);
   Solenoid led = new Solenoid(2);
@@ -177,14 +177,9 @@ public class Robot extends TimedRobot {
       Scheduler.getInstance().add(new MoveTurret());
      }
     
-    if(Robot.arm.getBallStopButton()==false){
-      double pos = (Constants.turretMax + Constants.turretMin)/2;
-        // if(Robot.turret.getPosition()>(pos-30) && Robot.turret.getPosition()<(pos+30)){
-        //     // Turret should be in place.
-        // }else{
+        if(Robot.arm.getBallStopButton()==false&&continueLoad==false){
           Scheduler.getInstance().add(new LoadBallCollector());
-        //}
-      }
+        }
     }
 
   /**

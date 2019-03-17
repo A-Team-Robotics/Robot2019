@@ -23,14 +23,4 @@ public class WaitTimer extends Command{
     protected boolean isFinished() {
         return isTimedOut();
     }
-    @Override
-
-	protected void end() {
-    	
-    }
-
-    @Override
-    protected void interrupted() {
-        end();
-    }
 }

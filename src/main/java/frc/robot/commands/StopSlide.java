@@ -12,5 +12,6 @@ public class StopSlide extends InstantCommand {
     @Override
     protected void initialize() {
             Robot.slideSystem.stopMotor();
+            System.out.println("Yeah");
     }
 }

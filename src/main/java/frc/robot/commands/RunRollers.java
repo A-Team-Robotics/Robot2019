@@ -12,13 +12,4 @@ public class RunRollers extends InstantCommand{
         Robot.arm.setRollersForward();
     }
     
-    @Override
-	protected void end() {
-    	
-    }
-
-    @Override
-    protected void interrupted() {
-        Robot.arm.stopMotor();
-    }
 }
